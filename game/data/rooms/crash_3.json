@@ -1,0 +1,37 @@
+{
+  "id": "crash_3", "area": "crash", "cell": [2, 1], "size": [1, 1], "title": "CRASH SITE Z-0: CONDUIT YARD",
+  "tiles": [
+    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "BB......|.....BBBB..v......|..BBBBBBBBBB",
+    "BB......|.....BBBB..v......|..BBBBBBBBBB",
+    "BB..gg..|.....BBBB..v......|..BBBBBBBBBB",
+    "BB..gg..|.....BBBB.........|..BBBBBBBBBB",
+    "BB.-----|.....BBBB.........|..BBBBBBBBBB",
+    "BB............BBBB.........|..BBBBBBBBBB",
+    "BB............BBBB.........|..BBBBBBBBBB",
+    "BB............BBBB.........|..BBBBBBBBBB",
+    "BB............BBBB............CwwwLwwwBB",
+    "BB............BBBB............CwwwwwwwBB",
+    "BB............BBBB............CwwwwwwwBB",
+    "BB............BBBB............CwwwwwwwBB",
+    "BB............BBBT........============BB",
+    "........................................",
+    "........................................",
+    "......................====..............",
+    "........................................",
+    "........................................",
+    "########################################",
+    "########################################",
+    "########################################"
+  ],
+  "entities": [
+    {"type": "npc", "at": [8, 19], "name": "Darryl Archideld"},
+    {"type": "hint", "at": [9, 19], "size": [8, 6], "text": "HOLD C OR K TO CHARGE. A FULL CHARGE WAKES UP TARGETS"},
+    {"type": "hint", "at": [23, 17], "size": [5, 6], "text": "THE BULLSEYE ACROSS THE YARD: SHOOT IT FROM UP HERE"},
+    {"type": "chest", "at": [34, 13], "level": 3},
+    {"type": "enemy", "at": [12, 19], "id": "astro_zombie"},
+    {"type": "enemy", "at": [30, 12], "id": "space_bat", "count": 2},
+    {"type": "enemy", "at": [33, 19], "id": "astro_zombie"}
+  ]
+}
