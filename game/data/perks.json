@@ -1,0 +1,29 @@
+{
+  "_comment": "Kill Tallies from docs/design/bestiary.md#kill-tallies. The slice ships the three perks of its three enemy types. A perk never grants traversal or opens a gate: reveal perks only show things.",
+  "thresholds": {"fodder": 200, "sturdy": 200, "elite": 100, "rare": 25},
+  "mirror_divisor": 2,
+  "first_kill_xp_mult": 5,
+  "reveal_pct": 25,
+  "rival_pct": 50,
+  "rival_drop_mult": 1.25,
+  "knack_slots": {"start": 1, "unlock_at_completed": [10, 30]},
+  "trait_caps": {"crit_chance": 4.0, "run_speed_pct": 10.0},
+  "perks": {
+    "echolocation_ping": {
+      "name": "Echolocation Ping", "type": "knack", "enemy": "space_bat", "ep": 4.0,
+      "text": "Ping: highlights breakable walls within 1 screen. It reveals them; it does not break them.",
+      "text_ex": "Ping EX: reaches 2 screens.",
+      "range_px": [640, 1280]
+    },
+    "braaains": {
+      "name": "Braaains", "type": "trait", "enemy": "astro_zombie",
+      "text": "+2 INT", "text_ex": "+5 INT (EX)",
+      "stats": [{"INT": 2}, {"INT": 5}]
+    },
+    "satellite_uplink": {
+      "name": "Satellite Uplink", "type": "knack", "enemy": "hunch_bot", "ep": 0.0, "toggle": true,
+      "text": "Toggle: the minimap shows item locations in the current room.",
+      "text_ex": "Uplink EX: also shows items in adjacent rooms."
+    }
+  }
+}

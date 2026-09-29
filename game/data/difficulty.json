@@ -1,0 +1,18 @@
+{
+  "_comment": "Difficulty modes from docs/design/player-and-combat.md#death-continues-and-difficulty. Modes marked unlock=ending stay locked in the slice, which has no ending.",
+  "default": "normal",
+  "modes": {
+    "babby":       {"name": "Babby's First Planet", "damage_taken": 0.5, "enemy_hp": 0.75, "knockback": false, "seal_window": 6.0, "loot_luck": 0.0, "elite_rolls": 1, "permadeath": false, "unlock": ""},
+    "normal":      {"name": "Normal",               "damage_taken": 1.0, "enemy_hp": 1.0,  "knockback": true,  "seal_window": 3.0, "loot_luck": 0.0, "elite_rolls": 1, "permadeath": false, "unlock": ""},
+    "git_gud":     {"name": "Git Gud",              "damage_taken": 1.5, "enemy_hp": 1.3,  "knockback": true,  "seal_window": 3.0, "loot_luck": 25.0, "elite_rolls": 2, "permadeath": false, "unlock": "ending"},
+    "iron_mullet": {"name": "Iron Mullet",          "damage_taken": 1.0, "enemy_hp": 1.0,  "knockback": true,  "seal_window": 3.0, "loot_luck": 50.0, "elite_rolls": 1, "permadeath": true,  "unlock": "ending"}
+  },
+  "death_messages": [
+    "YOU HAVE DIED OF SPACE DYSENTERY",
+    "YOU DIED. THE SPACEBALL CARD IS STILL MISSING",
+    "GAME OVER, MAN. GAME OVER",
+    "YOU ARE DEAD. SLEVE IS SAD. THE NAG-9000 IS NOT SURPRISED",
+    "FATALITY (THE BAD KIND)",
+    "WASTED. AGAIN"
+  ]
+}

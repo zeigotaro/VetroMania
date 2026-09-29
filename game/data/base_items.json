@@ -1,0 +1,43 @@
+{
+  "_comment": "Item bases from docs/design/progression-and-loot.md. Each tier has two variants per slot or class. Tier 0 = Normal (iLvl 1-16), 1 = Exceptional (17-33), 2 = Elite (34-50).",
+  "tier_ilvl": [1, 17, 34],
+  "armor": {
+    "helmet":    {"family": "Helm-Visors",     "weight": 0.9, "bases": [["Foil Visor", "Bucket Helm"], ["Helm-Visor", "Tactical Visor"], ["Aegis Visor", "Quantum Visor"]]},
+    "chest":     {"family": "Chest Carapaces", "weight": 1.4, "bases": [["Cardboard Carapace", "Padded Vest"], ["Chest Carapace", "Flak Breastplate"], ["Titan Carapace", "Aegis Breastplate"]]},
+    "gauntlets": {"family": "Power Gauntlets", "weight": 0.8, "bases": [["Oven Gauntlets", "Bracer Sleeves"], ["Power Gauntlets", "Servo Bracers"], ["Hydraulic Gauntlets", "Titan Bracers"]]},
+    "gloves":    {"family": "Grip Gloves",     "weight": 0.6, "bases": [["Work Mitts", "Garden Gloves"], ["Grip Gloves", "Catcher's Gloves"], ["Nano Gloves", "Gauss Gloves"]]},
+    "leggings":  {"family": "Leg Servos",      "weight": 1.1, "bases": [["Cargo Shorts", "Padded Leggings"], ["Leg Servos", "Flak Greaves"], ["Piston Greaves", "Titan Greaves"]]},
+    "boots":     {"family": "Mag-Boots",       "weight": 0.9, "bases": [["Space Sneakers", "Moon Boots"], ["Mag-Boots", "Jet Boots"], ["Grav-Boots", "Quantum Treads"]]}
+  },
+  "rings": {
+    "quantum_band": {"family": "Quantum Bands", "lean": "offense", "bases": ["Copper Quantum Band", "Quantum Band", "Prime Quantum Band"]},
+    "halo_loop":    {"family": "Halo Loops",    "lean": "defense", "bases": ["Tin Halo Loop", "Halo Loop", "Prime Halo Loop"]}
+  },
+  "weapons": {
+    "bat":         {"family": "Beam Bats",      "slot": "weapon", "weight": 1.0,  "frames": 18, "reach": 40, "chain": 3, "crit_bonus": 0,
+                    "bases": [["Foam Bat", "Whiffle Bat"], ["Beam Bat", "Laser Louisville"], ["Photon Slugger", "Plasma Bomber"]]},
+    "whip":        {"family": "Plasma Whips",   "slot": "weapon", "weight": 0.9,  "frames": 24, "reach": 80, "chain": 1, "crit_bonus": 0,
+                    "bases": [["Jump Rope", "Extension Cord"], ["Plasma Whip", "Cat-o'-Nine-Cables"], ["Hyperlink Lash", "Ethernet Lash"]]},
+    "mallet":      {"family": "Mega Mallets",   "slot": "weapon", "weight": 1.45, "frames": 30, "reach": 32, "chain": 1, "crit_bonus": 0,
+                    "bases": [["Squeaky Mallet", "Pool Noodle Maul"], ["Mega Mallet", "Sledge-o-Matic"], ["Ban Hammer", "Gavel of Judgment"]]},
+    "cutter":      {"family": "Box Cutters",    "slot": "weapon", "weight": 0.7,  "frames": 10, "reach": 24, "chain": 5, "crit_bonus": 5,
+                    "bases": [["Box Cutter", "Paper Knife"], ["Laser Letter Opener", "Zip Blade"], ["Memo Spike", "Monofilament Slicer"]]},
+    "mitt_cannon": {"family": "Mitt Cannons",   "slot": "sub",    "weight": 0.8,  "charge_mult": 2.5, "charge_ep": 6.0,
+                    "bases": [["Oven Mitt", "Baseball Mitt"], ["Mitt Cannon", "Catcher's Cannon"], ["Golden Glove Gatling", "Platinum Glove Gatling"]]},
+    "spread_gun":  {"family": "Spread Guns",    "slot": "sub",    "weight": 0.45, "ep": 4.0, "pellets": 3,
+                    "bases": [["Pea Shooter", "Squirt Blaster"], ["Scatter Blaster", "Trident Blaster"], ["Pivot Table Cannon", "Flak Pivot"]]},
+    "throwable":   {"family": "Throwables",     "slot": "sub",    "weight": 0.6,  "ep": 3.0,
+                    "bases": [["Space Frisbee", "Pie Plate"], ["Boomerang Card", "Ninja Star Trek"], ["Holo-Chakram", "Vinyl Record"]]}
+  },
+  "rarity": {
+    "common":    {"mult": 1.0,  "affixes": [0, 0], "sell": 1},
+    "magic":     {"mult": 1.05, "affixes": [1, 2], "sell": 2},
+    "rare":      {"mult": 1.1,  "affixes": [3, 5], "sell": 4},
+    "set":       {"mult": 1.15, "affixes": [2, 3], "sell": 8},
+    "legendary": {"mult": 1.2,  "affixes": [4, 4], "sell": 10}
+  },
+  "drop_weights": {
+    "fodder": {"common": 55, "magic": 32, "rare": 10, "set": 2, "legendary": 1},
+    "elite":  {"common": 30, "magic": 40, "rare": 22, "set": 5, "legendary": 3}
+  }
+}

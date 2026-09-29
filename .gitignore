@@ -4,3 +4,12 @@ __pycache__/
 venv/
 .DS_Store
 Thumbs.db
+
+# Godot
+game/.godot/
+game/.import/
+*.translation
+
+# Local tooling output
+tmp/
+*.log
