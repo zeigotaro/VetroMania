@@ -41,6 +41,18 @@ func step(frames: int) -> void:
 		await tree.physics_frame
 
 
+## Wraps a world that Main already built, so a bot can play the real game with its menus.
+static func adopt(scene_tree: SceneTree, world_ref: World, state: GameState) -> WorldRun:
+	var run := WorldRun.new()
+	run.tree = scene_tree
+	run.world = world_ref
+	run.state = state
+	run.player = world_ref.player
+	run.input = ScriptedInput.new()
+	run.player.input = run.input
+	return run
+
+
 func hold(actions: Array, frames: int) -> void:
 	input._callback = Callable()
 	input._segments = [[frames, actions]]
@@ -138,11 +150,16 @@ func _steer(goal: Vector2, memory: Dictionary) -> Array:
 	return actions
 
 
-## Wall-kicks up a shaft: alternate walls, jump every time a wall is touched, steer to the other wall.
-func climb(top_y: float, max_frames: int = 900) -> bool:
+## Wall-kicks up a shaft: alternate walls, jump every time a wall is touched, steer to the other wall. With
+## exit_dir (+1 right, -1 left) it also walks off the top toward that side, and only succeeds standing on the
+## ledge at top_y. Without it, reaching top_y in mid-air counts, which is enough to prove a shaft can be climbed.
+func climb(top_y: float, max_frames: int = 900, exit_dir: int = 0) -> bool:
 	var memory := {"side": -1, "last_jump": false}
 	input._segments = []
 	input._callback = func(_frame: int) -> Array:
+		if exit_dir != 0 and player.global_position.y <= top_y:
+			memory["last_jump"] = false
+			return ["right" if exit_dir > 0 else "left"]
 		var actions: Array = []
 		var touching: int = int(player.call("_wall_side"))
 		if touching != 0:
@@ -154,12 +171,18 @@ func climb(top_y: float, max_frames: int = 900) -> bool:
 		memory["last_jump"] = press
 		return actions
 	var frames := 0
-	while frames < max_frames and player.global_position.y > top_y:
+	while frames < max_frames and not _climbed(top_y, exit_dir):
 		await tree.physics_frame
 		frames += 1
 	input._callback = Callable()
 	await tree.physics_frame
-	return player.global_position.y <= top_y
+	return _climbed(top_y, exit_dir)
+
+
+func _climbed(top_y: float, exit_dir: int) -> bool:
+	if exit_dir == 0:
+		return player.global_position.y <= top_y
+	return player.is_on_floor() and absf(player.global_position.y - top_y) <= 6.0
 
 
 func swing() -> void:

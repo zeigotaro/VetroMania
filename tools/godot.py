@@ -4,7 +4,8 @@
     python tools/godot.py import                # (re)build the import cache
     python tools/godot.py test [--filter NAME]  # run the headless unit tests
     python tools/godot.py script res://x.gd     # run any SceneTree script
-    python tools/godot.py smoke                 # boot the game headless and play a scripted route
+    python tools/godot.py smoke [--seed N]      # boot the game headless and play a scripted route
+    python tools/godot.py shots [OUT_DIR]       # windowed screenshot tour (needs a display and a GPU)
 
 Set GODOT to the Godot 4.7 console binary if it is not on PATH.
 Godot only sets a non-zero exit code when a script calls quit(1), so this
@@ -38,8 +39,15 @@ def find_godot() -> str:
     sys.exit("Godot not found. Set the GODOT environment variable to the Godot 4.7 binary.")
 
 
-def run(args: list[str], *, timeout: int = 420, fixed_fps: bool = False) -> int:
-    command = [find_godot(), "--headless", *(["--fixed-fps", "60"] if fixed_fps else []), "--path", str(GAME), *args]
+def run(args: list[str], *, timeout: int = 420, fixed_fps: bool = False, headless: bool = True) -> int:
+    command = [
+        find_godot(),
+        *(["--headless"] if headless else []),
+        *(["--fixed-fps", "60"] if fixed_fps else []),
+        "--path",
+        str(GAME),
+        *args,
+    ]
     print("$", " ".join(command), flush=True)
     try:
         process = subprocess.run(command, capture_output=True, text=True, timeout=timeout, errors="replace")
@@ -85,7 +93,11 @@ def main(argv: list[str] | None = None) -> int:
     script = sub.add_parser("script")
     script.add_argument("path")
     script.add_argument("rest", nargs="*")
-    sub.add_parser("smoke")
+    smoke = sub.add_parser("smoke")
+    smoke.add_argument("--seed", type=int, default=None, help="RNG seed for the run (default: a fixed one)")
+    smoke.add_argument("--isolate", action="store_true", help="use save files of its own, so runs can go in parallel")
+    shots = sub.add_parser("shots")
+    shots.add_argument("out_dir", nargs="?", default="")
     args = parser.parse_args(argv)
 
     if args.command == "import":
@@ -103,7 +115,11 @@ def main(argv: list[str] | None = None) -> int:
         return run(["--script", "res://tests/run_tests.gd", *extra], fixed_fps=True)
     if args.command == "script":
         return run(["--script", args.path, *(["--", *args.rest] if args.rest else [])], fixed_fps=True)
-    return run(["--script", "res://tests/smoke.gd"], fixed_fps=True)
+    if args.command == "shots":
+        out = str(Path(args.out_dir).resolve()) if args.out_dir else ""
+        return run(["--script", "res://tests/shots.gd", *(["--", out] if out else [])], fixed_fps=True, headless=False)
+    smoke_args = ([f"--seed={args.seed}"] if args.seed is not None else []) + (["--isolate"] if args.isolate else [])
+    return run(["--script", "res://tests/smoke.gd", *(["--", *smoke_args] if smoke_args else [])], fixed_fps=True)
 
 
 if __name__ == "__main__":
