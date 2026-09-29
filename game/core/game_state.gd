@@ -456,8 +456,13 @@ func collect(drop: Dictionary) -> void:
 
 # --- saving --------------------------------------------------------------------------------------
 
-func checkpoint(room_id: String, spawn: String) -> void:
-	data["checkpoint"] = {"room": room_id, "spawn": spawn}
+## Where Death and Continue put Sleve back. With a position (pods, area autosaves) that exact spot is used,
+## otherwise the room's named spawn.
+func checkpoint(room_id: String, spawn: String, pos: Variant = null) -> void:
+	var entry := {"room": room_id, "spawn": spawn}
+	if pos is Vector2:
+		entry["pos"] = [snappedf((pos as Vector2).x, 0.1), snappedf((pos as Vector2).y, 0.1)]
+	data["checkpoint"] = entry
 
 
 func save() -> Error:

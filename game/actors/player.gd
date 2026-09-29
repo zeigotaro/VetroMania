@@ -540,7 +540,7 @@ func _check_damage() -> void:
 
 func take_hit(hit: HitArea) -> void:
 	var from_x := hit.global_position.x
-	if hit.source is Node2D:
+	if is_instance_valid(hit.source) and hit.source is Node2D:
 		from_x = (hit.source as Node2D).global_position.x
 	var amount := Combat.enemy_hit(state(), hit.level, hit.mult, hit.element)
 	if invuln > 0 or mode == Mode.DEAD or god_mode:

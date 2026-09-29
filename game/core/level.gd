@@ -8,14 +8,14 @@ extends RefCounted
 ##   =  one-way platform ^  spikes (hurt)                        %  hollow wall (breaks on the 3rd bat hit)
 ##   X  crate bulkhead (breaks on any bat hit)                    T  mitt target (a charged Mitt Cannon shot)
 ##   C  conduit shutter (opens when the room's mitt target is hit)
-##   decor (not solid): w back wall, - pipe, | pipe, g grate, L light, v vine, P pillar
+##   decor (not solid): w back wall, - pipe, | pipe, g grate, L light, v vine, P pillar, b brick backdrop
 ## Entity `at` is [column, row] inside the room: the tile the entity's feet stand in.
 
 const SOLID := "#BZ%XTC"
 const GATES := "%XTC"
-const DECOR := "w-|gLvP"
-const LEGEND := ".#B=^%XTCZw-|gLvP"
-const DECOR_TILES := {"w": "back_wall", "-": "pipe_h", "|": "pipe_v", "g": "grate", "L": "light_panel", "v": "vine", "P": "pillar"}
+const DECOR := "w-|gLvPb"
+const LEGEND := ".#B=^%XTCZw-|gLvPb"
+const DECOR_TILES := {"w": "back_wall", "-": "pipe_h", "|": "pipe_v", "g": "grate", "L": "light_panel", "v": "vine", "P": "pillar", "b": "brick"}
 
 var rooms := {}
 var cell_room := {}

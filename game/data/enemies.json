@@ -28,7 +28,7 @@
       "phase2_at": 0.5, "fail_recover": 0.2,
       "params": {
         "idle_min": 42, "idle_max": 70,
-        "slam": {"windup": 32, "hop_frames": 26, "hop_height": 72, "travel_speed": 110, "recover": 44, "wave_speed": 150, "wave_mult": 0.7, "land_mult": 1.2},
+        "slam": {"windup": 32, "hop_frames": 26, "hop_height": 72, "travel_speed": 110, "recover": 44, "wave_speed": 150, "wave_mult": 0.7, "wave_frames": 240, "land_mult": 1.2},
         "chomp": {"windup": 26, "lunge_frames": 14, "lunge_dist": 112, "recover": 36, "mult": 1.4},
         "cargo_drop": {"windup": 34, "crates": 3, "fall_speed": 260, "mult": 0.9, "recover": 40},
         "contact_mult": 0.8, "phase2_speed": 1.25
