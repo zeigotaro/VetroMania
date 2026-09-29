@@ -12,11 +12,65 @@ completionist streak. Get the true ending and the planet flips over into
 **Ainamortev**, its upside-down mirror. Exploring every inch tops out at
 **200.6%**.
 
-This repository holds the **implementation plan** and **concept assets**.
-Game code starts in Phase 0 (see the
-[production plan](docs/implementation-plan.md#8-production-plan)).
+This repository holds the **implementation plan**, the **concept assets**, and
+a playable **vertical slice** of the game (Phase 1), built in Godot 4.7. Crash
+on Crash Site Z-0, work through Hull Cathedral, climb the Outer Hull, and
+finish **KRATE** with an Autograph Seal. See [Play the slice](#play-the-slice).
+
+| | | |
+| --- | --- | --- |
+| ![Title screen](docs/screens/01-title.png) | ![Crash Site Z-0](docs/screens/02-crash-site.png) | ![Hull Cathedral](docs/screens/04-hull-cathedral.png) |
+| ![Outer Hull](docs/screens/05-outer-hull.png) | ![Autograph Seal](docs/screens/09-autograph-seal.png) | ![KRATE](docs/screens/10-krate.png) |
+
+*These are real screenshots of the slice at its native 640x360.* More are in
+[`docs/screens/`](docs/screens).
+
+## Play the slice
+
+You need the standard (non-.NET) build of [Godot 4.7](https://godotengine.org/download).
+
+```sh
+git clone https://github.com/zeigotaro/VetroMania.git
+godot --path game          # or open game/project.godot in the editor and press F5
+```
+
+The game opens on the title screen. Pick a slot and a difficulty, then follow
+the hints that pop up along the way.
+
+| Action | Keyboard | Gamepad |
+| --- | --- | --- |
+| Move | Arrow keys or WASD | D-pad or left stick |
+| Jump (hold for height) | Z or Space | A |
+| Attack | X or J | X |
+| Sub-weapon (hold to charge) | C or K | Y |
+| Backdash | Shift | LB |
+| Knack | V | RB |
+| Interact (talk, save pods, chests, warp pipes) | Up | Up |
+| Slide | Down + Jump | Down + Jump |
+| Spaceball (once you find it) | Double-tap Down | Double-tap Down |
+| Map | M | Back |
+| Pause, equipment, and options | Esc | Start |
+| Menus | Arrows, Z to select, X to go back, PgUp and PgDn for tabs | D-pad, A, B, LB and RB |
+
+Autograph Seals are fighting-game motions. Hold the directions in order, then
+press Attack. If that's not your idea of fun, turn on **Seal Assist** in
+Pause, SYSTEM, which also has music and sound volume, screen shake, damage
+numbers, game speed, and fullscreen.
+
+Saves and settings live in Godot's user data folder for the project. On
+Windows that's `%APPDATA%\Godot\app_userdata\VetroMania- Symphony of the Spaceball`.
+
+**In the slice:** 11 rooms in 13 cells across three areas, three enemy types
+and the KRATE boss, the Beam Bat, Mitt Cannon, Spaceball, Wall Kick, and
+Jetpack, gear from common to legendary with gem upgrades at save pods, Kill
+Tallies, stat points from Training Montages, three save slots, and four
+secrets. What isn't built yet is listed in the
+[implementation status](docs/implementation-plan.md#12-implementation-status).
 
 ## Highlights
+
+*This is the full design. The slice builds a
+[subset](docs/implementation-plan.md#12-implementation-status) of it.*
 
 - **Dawn of Sorrow feel.** Snappy movement, a backdash that's always
   available, damage numbers, and **Autograph Seals**: fighting-game motion
@@ -44,6 +98,9 @@ Game code starts in Phase 0 (see the
 
 ## Gallery
 
+These are the **concept** renders that set the target. The slice's own
+screenshots are at the top of this page.
+
 | Title screen | Ainamortev, the flipped planet |
 | --- | --- |
 | ![Title screen](assets/concept/mockups/title@3x.png) | ![Mirror planet](assets/concept/mockups/mirror@3x.png) |
@@ -66,21 +123,46 @@ More in [Art direction](docs/art/art-direction.md#concept-gallery) and in
 | [Implementation plan](docs/implementation-plan.md) | Vision, pillars, influences, requirements traceability, content budget, team, phases, risks, and gap decisions |
 | [Story and tone](docs/design/story-and-tone.md) | Premise, cast, story beats, both endings, and the humor guardrails |
 | [The Roster](docs/design/roster.md) | The 22 fake baseball names we keep, their source, and the rules for using them |
-| [World and map](docs/design/world-and-map.md) | The 13 areas, the gating matrix, the critical path, the Flip, and 200.6% |
+| [World and map](docs/design/world-and-map.md) | The 13 areas, the gating matrix, the critical path, the Flip, 200.6%, and the slice's layout |
 | [Player and combat](docs/design/player-and-combat.md) | Controls, movement numbers, abilities, weapons, damage formulas, bosses, and seals |
 | [Progression and loot](docs/design/progression-and-loot.md) | XP curve, stats, gear slots, rings, affixes, drops, Loot Luck, upgrades, and gems |
 | [Bestiary](docs/design/bestiary.md) | 90 tallies, 40 base enemies and their perks, mirror variants, and 27 bosses |
 | [Reference ledger](docs/design/reference-ledger.md) | 120 references and memes, with where they appear and their risk |
-| [Technical architecture](docs/technical/architecture.md) | Godot 4, the data model, the loot generator and simulator, the Flip pipeline, the solver, saves, and CI |
+| [Technical architecture](docs/technical/architecture.md) | Godot 4, how the slice is built and where it differs from the plan, the data model, the loot generator and simulator, the Flip pipeline, the solver, saves, and CI |
+| [Level format](docs/technical/level-format.md) | The room JSON files, the tile legend, entities, and the linter's rules |
 | [Art direction](docs/art/art-direction.md) | Resolution, sprite specs, shading rules, palettes, animation budgets, and the gallery |
 
 ## Repository layout
 
 ```text
+game/               the Godot 4.7 project: the playable vertical slice
+docs/               the plan, the design documents, and screenshots
+tools/              godot.py (test runner), level_tools.py, game_assets/, concept_art/
 assets/concept/     procedural concept art (PNG sheets, GIFs, and mockups)
-docs/               the plan and the design documents
-tools/concept_art/  the Python generator for everything in assets/concept/
+.github/workflows/  CI
 ```
+
+## Develop
+
+Python 3.12 and Godot 4.7 (put it on `PATH`, or set `GODOT`). The Python tools
+need Pillow and NumPy for the art and audio generators only:
+
+```sh
+python -m pip install -r tools/concept_art/requirements.txt
+
+python tools/godot.py test           # import, compile every script, run all 16 suites (about 20 s)
+python tools/godot.py smoke          # play the whole slice through the real UI, headless
+python tools/godot.py shots          # windowed screenshot tour (needs a display and a GPU)
+python tools/level_tools.py lint     # check every room; "preview" draws one to a PNG
+python tools/game_assets/export.py   # regenerate game/assets (add --check to verify)
+python tools/game_assets/audio.py    # regenerate game/assets/audio (add --check to verify)
+python tools/godot.py script res://tests/loot_sim.gd -- --kills=200000 --level=20
+```
+
+CI runs the same checks on every pull request. The
+[architecture doc](docs/technical/architecture.md#vertical-slice-as-built)
+explains how the game and its tests fit together, and the
+[level format](docs/technical/level-format.md) explains how to build a room.
 
 ## Regenerating the concept art
 

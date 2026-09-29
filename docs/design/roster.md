@@ -42,7 +42,7 @@ Each player is a holographic ex-athlete scattered across VetroMania.
 
 ## The set
 
-Card numbers are ours. "Slice" marks the ten holograms who speak in the
+Card numbers are ours. "Slice" marks the eleven holograms who speak in the
 vertical slice; the rest are placed in later areas.
 
 | # | Player | Position | Role in the game | Slice |
