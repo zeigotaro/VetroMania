@@ -67,6 +67,14 @@ static func current_music() -> String:
 	return instance._current_music if instance != null else ""
 
 
+## Re-applies the music volume to the track that is already playing (options changed).
+func refresh_music_volume() -> void:
+	var entry: Dictionary = Db.audio_manifest()["music"].get(_current_music, {})
+	if entry.is_empty():
+		return
+	_music[_music_index].volume_db = float(entry["volume_db"]) + linear_to_db(maxf(0.0001, master * music_volume))
+
+
 func _load_stream(entry: Dictionary, is_music: bool) -> AudioStream:
 	var path := "res://assets/audio/" + String(entry["file"])
 	if not _streams.has(path):

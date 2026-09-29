@@ -50,5 +50,5 @@ func _clamped(point: Vector2) -> Vector2:
 
 
 func shake(strength: float, frames: int) -> void:
-	shake_strength = strength
-	shake_frames = frames
+	shake_strength = strength * Settings.shake
+	shake_frames = frames if Settings.shake > 0.0 else 0

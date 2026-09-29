@@ -561,7 +561,8 @@ func hurt_by(amount: int, away: float) -> void:
 	damaged.emit(amount)
 	Combat.freeze(4)
 	AudioService.sfx("hurt")
-	FloatText.spawn(get_parent(), global_position + Vector2(0, -64), str(amount), UIKit.COLORS["bad"])
+	if Settings.damage_numbers:
+		FloatText.spawn(get_parent(), global_position + Vector2(0, -64), str(amount), UIKit.COLORS["bad"])
 	if gs.is_dead():
 		_die()
 		return

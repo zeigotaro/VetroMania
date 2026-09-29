@@ -363,7 +363,8 @@ func receive_hit(result: Dictionary, hit: Dictionary) -> void:
 		color = Color("4fe0ff")
 	elif result["resist"]:
 		color = Color("a0a0b0")
-	FloatText.spawn(get_parent(), global_position + Vector2(0, -bounds.y - 4), text, color)
+	if Settings.damage_numbers:
+		FloatText.spawn(get_parent(), global_position + Vector2(0, -bounds.y - 4), text, color)
 	if not is_boss():
 		var heavy: bool = hit.get("heavy", false)
 		knock_x = float(hit.get("direction", 1)) * (260.0 if heavy else 90.0)
