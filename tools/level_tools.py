@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Level model, linter and preview renderer for the VetroMania slice.
+"""Level linter and preview renderer for the VetroMania slice.
 
     python tools/level_tools.py lint                      # schema and design checks; exit 1 on problems
     python tools/level_tools.py preview --room crash_1    # one room at 1x to tmp/level_preview/crash_1.png
     python tools/level_tools.py preview --map             # the whole map, scaled down
-    python tools/level_tools.py solve                     # reachability solver (see solver.py)
 
 Rooms are JSON files in game/data/rooms/ with ASCII tiles; see docs/technical/level-format.md.
-The same rules are enforced at runtime by game/core/level.gd.
+The runtime (game/core/level.gd) only parses them, so this lint is what checks the schema. Whether the level
+can be finished, and whether each secret needs its ability, is proven by the physics bot tests
+(game/tests/test_route.gd and test_secrets.gd).
 """
 
 from __future__ import annotations
@@ -32,6 +33,7 @@ LEGEND = set(".#B=^%XTCZ") | set(DECOR)
 ENTITY_TYPES = {
     "spawn", "enemy", "boss", "save_pod", "vending", "statue", "npc", "table", "chest", "orb", "door", "warp", "hint",
 }
+ENEMY_DEFS = json.loads((DATA / "enemies.json").read_text(encoding="utf-8"))["enemies"]
 
 
 @dataclass
@@ -102,7 +104,7 @@ class Level:
 
 
 def known_enemies() -> set[str]:
-    return set(json.loads((DATA / "enemies.json").read_text(encoding="utf-8"))["enemies"])
+    return set(ENEMY_DEFS)
 
 
 def known_bosses() -> set[str]:
@@ -148,6 +150,9 @@ def lint(level: Level) -> list[str]:
     bosses_placed = [e for r in level.rooms.values() for e in r.entities if e["type"] == "boss"]
     if len(bosses_placed) != 1:
         problems.append(f"expected exactly one boss, found {len(bosses_placed)}")
+    doors = [e for r in level.rooms.values() for e in r.entities if e["type"] == "door"]
+    if len(doors) > 1:
+        problems.append(f"expected at most one boss door, found {len(doors)}")
     return problems
 
 
@@ -162,11 +167,15 @@ def _lint_entity(level: Level, room: Room, entity: dict, enemies: set, bosses: s
     if not (isinstance(at, list) and len(at) == 2 and 0 <= at[0] < w and 0 <= at[1] < h):
         return [f"{where}: outside the room"]
     gx, gy = level.entity_tile(room, at)
-    if kind in {"save_pod", "vending", "statue", "npc", "table", "chest", "warp", "door", "boss", "spawn"}:
+    standing = {"save_pod", "vending", "statue", "npc", "table", "chest", "warp", "door", "boss", "spawn"}
+    ground_enemy = kind == "enemy" and not ENEMY_DEFS.get(entity.get("id"), {}).get("flying", False)
+    if kind in standing or ground_enemy:
         if level.solid(gx, gy):
             problems.append(f"{where}: stands inside a solid tile")
         if not level.solid(gx, gy + 1) and level.tile(gx, gy + 1) != "=":
             problems.append(f"{where}: has nothing to stand on")
+    elif kind in {"enemy", "orb"} and level.solid(gx, gy):
+        problems.append(f"{where}: starts inside a solid tile")
     if kind == "enemy" and entity.get("id") not in enemies:
         problems.append(f"{where}: unknown enemy {entity.get('id')!r}")
     if kind == "boss" and entity.get("id") not in bosses:
@@ -287,7 +296,6 @@ def main(argv: list[str] | None = None) -> int:
     preview.add_argument("--scale", type=float, default=None)
     preview.add_argument("--out", type=Path, default=ROOT / "tmp" / "level_preview")
     preview.add_argument("--no-markers", action="store_true")
-    sub.add_parser("solve")
     args = parser.parse_args(argv)
     level = Level.load()
     if args.command == "lint":
@@ -296,22 +304,17 @@ def main(argv: list[str] | None = None) -> int:
             print("LINT:", problem)
         print(f"{len(level.rooms)} rooms, {len(level.cell_room)} cells, {len(problems)} problem(s)")
         return 1 if problems else 0
-    if args.command == "preview":
-        args.out.mkdir(parents=True, exist_ok=True)
-        if args.map or not args.room:
-            image = render(level, None, args.scale or 0.25, not args.no_markers)
-            path = args.out / "map.png"
-        else:
-            image = render(level, args.room, args.scale or 1.0, not args.no_markers)
-            path = args.out / ("_".join(args.room) + ".png")
-        image.save(path)
-        print("wrote", path, image.size)
-        return 0
-    from solver import main as solve_main  # noqa: PLC0415
-
-    return solve_main(level)
+    args.out.mkdir(parents=True, exist_ok=True)
+    if args.map or not args.room:
+        image = render(level, None, args.scale or 0.25, not args.no_markers)
+        path = args.out / "map.png"
+    else:
+        image = render(level, args.room, args.scale or 1.0, not args.no_markers)
+        path = args.out / ("_".join(args.room) + ".png")
+    image.save(path)
+    print("wrote", path, image.size)
+    return 0
 
 
 if __name__ == "__main__":
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
     raise SystemExit(main())

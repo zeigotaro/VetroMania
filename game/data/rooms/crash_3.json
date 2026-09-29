@@ -31,7 +31,7 @@
     {"type": "hint", "at": [23, 17], "size": [5, 6], "text": "THE BULLSEYE ACROSS THE YARD: SHOOT IT FROM UP HERE"},
     {"type": "chest", "at": [34, 13], "level": 3},
     {"type": "enemy", "at": [12, 19], "id": "astro_zombie"},
-    {"type": "enemy", "at": [30, 12], "id": "space_bat", "count": 2},
+    {"type": "enemy", "at": [22, 8], "id": "space_bat", "count": 2},
     {"type": "enemy", "at": [33, 19], "id": "astro_zombie"}
   ]
 }
