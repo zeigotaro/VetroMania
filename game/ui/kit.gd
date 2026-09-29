@@ -49,6 +49,69 @@ static func rich(text: String, color: Color = COLORS["text"], scale: int = 1, wi
 	return node
 
 
+# --- immediate-mode drawing: menus paint themselves in _draw() so there are no label nodes to manage ------
+
+const RARITY_MARKS := {"common": "", "magic": "+", "rare": "*", "set": "#", "legendary": "!"}
+
+
+static func draw_text(node: CanvasItem, text: String, at: Vector2, color: Color = COLORS["text"], scale: int = 1) -> void:
+	var size := NATIVE * scale
+	var upper := text.to_upper()
+	node.draw_string(font(), at + Vector2(scale, scale + size), upper, HORIZONTAL_ALIGNMENT_LEFT, -1, size, COLORS["shadow"])
+	node.draw_string(font(), at + Vector2(0, size), upper, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
+
+
+static func draw_text_right(node: CanvasItem, text: String, right: float, y: float, color: Color = COLORS["text"], scale: int = 1) -> void:
+	draw_text(node, text, Vector2(right - text_width(text, scale), y), color, scale)
+
+
+static func draw_text_center(node: CanvasItem, text: String, center: float, y: float, color: Color = COLORS["text"], scale: int = 1) -> void:
+	draw_text(node, text, Vector2(center - text_width(text, scale) / 2.0, y), color, scale)
+
+
+## Word-wraps to a number of characters (the font is monospaced: 6 px per character at 1x).
+static func wrap(text: String, max_chars: int) -> Array[String]:
+	var lines: Array[String] = []
+	var line := ""
+	for word in text.split(" "):
+		if line == "":
+			line = word
+		elif line.length() + 1 + word.length() <= max_chars:
+			line += " " + word
+		else:
+			lines.append(line)
+			line = word
+	if line != "":
+		lines.append(line)
+	return lines
+
+
+static func draw_panel(node: CanvasItem, rect: Rect2, fill: Color = COLORS["panel"], border: Color = COLORS["border"]) -> void:
+	node.draw_rect(rect, fill)
+	node.draw_rect(rect, border, false, 1.0)
+	node.draw_rect(rect.grow(-2), border.darkened(0.5), false, 1.0)
+
+
+static func draw_bar(node: CanvasItem, rect: Rect2, fraction: float, color: Color) -> void:
+	node.draw_rect(rect, Color(0.1, 0.08, 0.16, 0.95))
+	node.draw_rect(Rect2(rect.position + Vector2.ONE, Vector2((rect.size.x - 2.0) * clampf(fraction, 0.0, 1.0), rect.size.y - 2.0)), color)
+	node.draw_rect(rect, Color(0, 0, 0, 0.9), false, 1.0)
+
+
+static func rarity_color(rarity: String) -> Color:
+	return Consts.RARITY_COLORS.get(rarity, COLORS["text"])
+
+
+## Rarity is never shown by colour alone: every rarity but common also gets a prefix mark.
+static func item_title(item: Dictionary) -> String:
+	return "%s %s" % [RARITY_MARKS.get(item["rarity"], ""), Items.compose_name(item)] if RARITY_MARKS.get(item["rarity"], "") != "" else Items.compose_name(item)
+
+
+static func format_time(seconds: float) -> String:
+	var total := int(seconds)
+	return "%d:%02d:%02d" % [total / 3600, (total / 60) % 60, total % 60]
+
+
 ## A bordered panel drawn with plain rects so it stays crisp at any window size.
 class PanelBox extends Control:
 	var fill: Color = UIKit.COLORS["panel"]

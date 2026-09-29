@@ -2,12 +2,24 @@ class_name LiveInput
 extends InputSource
 ## Keyboard and gamepad through Godot's InputMap (actions are named vm_<action>).
 
+var _suppressed := {}
+
 
 func poll() -> void:
 	var now := {}
 	for action: String in InputSource.ACTIONS:
-		now[action] = Input.is_action_pressed("vm_" + action)
+		var down := Input.is_action_pressed("vm_" + action)
+		if not down:
+			_suppressed.erase(action)
+		now[action] = down and not _suppressed.has(action)
 	_apply(now)
+
+
+## After a menu closes, whatever is still held from the menu must not leak into the game as a jump or a swing.
+func suppress_until_release() -> void:
+	for action: String in InputSource.ACTIONS:
+		if Input.is_action_pressed("vm_" + action):
+			_suppressed[action] = true
 
 
 ## Registers the default bindings from docs/design/player-and-combat.md#controls. Safe to call twice.
