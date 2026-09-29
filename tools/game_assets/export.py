@@ -192,6 +192,7 @@ def _export_bosses(out_dir: Path, manifest: dict) -> None:
 
 def _export_props(out_dir: Path, manifest: dict) -> None:
     metadata = {
+        "chest": (2.0, False, "ground"),
         "save_pod": (6.0, True, "ground"),
         "door": (4.0, False, "ground"),
         "vending_machine": (5.0, True, "ground"),

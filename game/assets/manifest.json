@@ -481,6 +481,26 @@
         8
       ]
     },
+    "props/chest": {
+      "bbox": [
+        1,
+        0,
+        28,
+        24
+      ],
+      "file": "sprites/props/chest.png",
+      "fps": 2.0,
+      "frame_size": [
+        28,
+        24
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        14,
+        24
+      ]
+    },
     "props/door": {
       "bbox": [
         0,

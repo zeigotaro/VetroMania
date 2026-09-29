@@ -486,6 +486,36 @@ def signing_table() -> list[Sprite]:
     return frames
 
 
+def chest() -> list[Sprite]:
+    frames = []
+    for opened in (False, True):
+        s = Sprite(28, 24)
+        base = s.paint(s.rrect(2, 9, 26, 23, radius=4, bevel=2.2), STEEL, group="base")
+        panel = s.paint(s.rrect(4, 12, 24, 21, radius=2, bevel=1.4), STEEL_DARK, group="panel")
+        _hazard_stripes(s, s.mask_rect(5, 13, 24, 16) & panel, offset=1)
+        s.fill(s.mask_line([(5, 12), (23, 12)]) & panel, CYAN, 2, group="seam")
+        latch = s.paint(s.rrect(12, 14, 16, 19, radius=1, bevel=0.9), GOLD if opened else mat("#c69542", 4),
+                        group="latch")
+        s.shift(s.mask_points([(13, 15)]) & latch, 2)
+        s.paint(s.polygon([(5, 23), (8, 23), (7, 24), (4, 24)], bevel=0.5), STEEL_DARK, group="foot_left")
+        s.paint(s.polygon([(20, 23), (23, 23), (24, 24), (21, 24)], bevel=0.5), STEEL_DARK, group="foot_right")
+
+        if opened:
+            spill = s.mask_polygon([(6, 9), (22, 9), (25, 13), (3, 13)])
+            s.fill(spill, AMBER, 2, group="spill")
+            s.fill(s.mask_polygon([(8, 9), (20, 9), (22, 12), (6, 12)]), WHITE, 2, group="spill_core")
+            lid = [(2, 10), (6, 2), (21, 0), (26, 6), (24, 11), (18, 8), (8, 9)]
+            lid_mask = s.paint(s.polygon(lid, bevel=2.0), STEEL, group="lid")
+            _hazard_stripes(s, s.mask_polygon([(8, 6), (22, 4), (23, 7), (10, 9)]) & lid_mask, offset=2)
+            s.fill(s.mask_line([(9, 8), (20, 5)]) & lid_mask, CYAN, 2, group="lid_seam")
+        else:
+            lid_mask = s.paint(s.rrect(2, 3, 26, 12, radius=4, bevel=2.0), STEEL, group="lid")
+            _hazard_stripes(s, s.mask_rect(5, 6, 24, 9) & lid_mask, offset=2)
+            s.fill(s.mask_line([(5, 9), (23, 9)]) & lid_mask, CYAN, 2, group="lid_seam")
+        frames.append(s)
+    return frames
+
+
 PROPS = {
     "save_pod": save_pod,
     "door": door,
@@ -522,5 +552,6 @@ RUNTIME_ITEM_ICONS = {
 }
 
 RUNTIME_PROPS = {
+    "chest": chest,
     "signing_table": signing_table,
 }
