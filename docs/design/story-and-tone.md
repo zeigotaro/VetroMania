@@ -41,7 +41,7 @@ happens after that.
 | **Deckard Cane** | Lore-keeper and item identifier | An elderly android with a walking cane. Opens every conversation with "STAY AWHILE AND LISTEN." Identifies legendary and set items for free |
 | **Anvil** | Merchant and upgrade bench | Retired space marine who runs the shop in Hull Cathedral. Sells base gear and consumables, and charges the upgrade fee |
 | **Bobson Dugnutt** | The face on the card | Appears as a hologram in the Loser Colosseum. Playable in post-game Bobson Mode |
-| **The Roster** | The rest of the *Vetro Fighting Spaceballers* | Holographic ex-athletes with suspicious names, scattered across the planet. Fought all at once in Ainamortev's Loser Colosseum |
+| **The Roster** | The rest of the *Vetro Fighting Spaceballers* | Holographic ex-athletes with suspicious names (the exact names from the *Fighting Baseball* meme; see [The Roster](roster.md)), scattered across the planet. Fought all at once in Ainamortev's Loser Colosseum |
 | **Clipster** | Secret boss | A paperclip office assistant who runs Cyber-Mall 1996: "IT LOOKS LIKE YOU'RE TRYING TO STEAL A SPACEBALL CARD." |
 
 ## Story beats

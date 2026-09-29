@@ -19,6 +19,7 @@ All values assume a fixed 60 Hz simulation. Distances are in pixels, with
 | Action | Gamepad (Xbox layout) | Keyboard |
 | --- | --- | --- |
 | Move / aim | Left stick or D-pad | Arrow keys or WASD |
+| Interact (talk, doors, save pods, warp pipes) | Up | Up |
 | Jump | A | Z or Space |
 | Attack (main weapon) | X | X or J |
 | Sub-weapon | Y | C or K |
@@ -38,7 +39,7 @@ Everything is remappable. Every hold input also has a toggle option.
 | Parameter | Value | Notes |
 | --- | --- | --- |
 | Run speed | 150 px/s | Full speed in 4 frames, full stop in 3 |
-| Jump height | 56 px (3.5 tiles) at full hold; 24 px on a tap | Variable height: releasing Jump cuts upward speed by 55% |
+| Jump height | 56 px (3.5 tiles) at full hold; 24 px on a tap | Variable height: releasing Jump (after at least 3 frames) cuts upward speed by 57% |
 | Gravity | 1,030 px/s² rising, 1,440 px/s² falling | Heavier falls feel snappy; terminal velocity is 420 px/s |
 | Apex hang | Gravity x0.5 while vertical speed is under 40 px/s | Subtle float at the top of the arc |
 | Coyote time / jump buffer | 6 frames each | Forgiving without feeling floaty |

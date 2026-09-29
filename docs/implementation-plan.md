@@ -32,6 +32,7 @@ Detailed design documents:
 | Document | Covers |
 | --- | --- |
 | [Story and tone](design/story-and-tone.md) | Premise, cast, story beats, endings, and humor guardrails |
+| [The Roster](design/roster.md) | The 22 fake baseball names we keep, their source, and the rules for using them |
 | [World and map](design/world-and-map.md) | The 13 areas, ability gating, the Flip, and 200.6% completion |
 | [Player and combat](design/player-and-combat.md) | Controls, movement, abilities, damage, bosses, and Autograph Seals |
 | [Progression and loot](design/progression-and-loot.md) | XP and stats, gear slots, rarity, affixes, drops, and gem upgrades |
@@ -285,18 +286,21 @@ The proposal left these open. Each is decided here and can be revisited.
 | Does the hub stay relevant? | Hull Cathedral's enemy level tracks story progress; every other area has fixed levels | Makes the hub a farming spot without scaling the whole world |
 | Does armor change Sleve's sprite? | No. Only the weapon class, a palette tint for full sets, and a glint at +5 show. The equipment screen's paper doll shows everything | Redrawing every armor piece on every animation frame would multiply the art budget |
 | Tone ceiling | ESRB T target. Crude language in Salty mode, bleeped in Decaf mode, and no slurs ever | Keeps the DudeBro satire without alienating players |
+| Whose names for the spaceball roster | **Decided:** keep the exact fake names from the *Fighting Baseball* meme, as found. Names only, credited, and never the real athletes they distort. See [The Roster](design/roster.md) | The joke is Sleve's whole identity, and names live in one data file, so a legal-review swap is cheap |
+| How does the player interact with things | Up talks to holograms, enters doors and warp pipes, and uses save pods | Matches the Castlevania convention and needs no extra button |
 
 ## 11. Open questions
 
 1. **Voice acting.** Barks only (budget) or fully voiced cutscenes? The plan
    assumes barks plus text.
-2. **Real card names.** The spaceball roster riffs on a famous fake-name
-   meme. Do we keep those exact names or write new ones in the same style?
-   See the [reference ledger](design/reference-ledger.md).
-3. **Couch co-op.** Not planned. NAG-9000, the companion drone, could become
+2. **Couch co-op.** Not planned. NAG-9000, the companion drone, could become
    a player-two helper post-launch.
-4. **Leaderboards** for Boss Rush and speedruns (the Metroid-style ending
+3. **Leaderboards** for Boss Rush and speedruns (the Metroid-style ending
    reward for a sub-3-hour clear).
+
+**Resolved:** the spaceball roster keeps the exact *Fighting Baseball* names
+(see [The Roster](design/roster.md)). The reference ledger keeps the entry at
+risk M for the legal pass in Phase 4.
 
 ## Concept assets
 

@@ -31,7 +31,7 @@ Area codes are listed in [World and map](world-and-map.md#areas-of-planet-vetrom
 
 | # | Reference | In VetroMania | Where | Risk |
 | --- | --- | --- | --- | --- |
-| 1 | The fake-name baseball roster of *Fighting Baseball* (SNES, 1994), a long-running meme | Sleve Bonzalez's name, the Bobson Dugnutt card, and the whole *Vetro Fighting Spaceballers* set | Everywhere | M |
+| 1 | The fake-name baseball roster of *Fighting Baseball* (Super Famicom, 1994; the Japanese release of *MLBPA Baseball*), a long-running meme. **Decision: keep the names** (see [The Roster](roster.md)) | Sleve Bonzalez's name (a Sleve McDichael and Todd Bonzalez mashup), the Bobson Dugnutt card, and the 22-player *Vetro Fighting Spaceballers* set. Names only: never the original game's text, art, or code, and never the real athletes the names distort | Everywhere | M |
 | 2 | *Metroid* (1986) | A lone bounty hunter, a hostile planet, and a power suit | Premise | L |
 | 3 | *Castlevania: Symphony of the Night* (1997) | The subtitle *Symphony of the Spaceball* | Title | L |
 | 4 | "All your base are belong to us" (*Zero Wing*, Mega Drive, 1991) | The Hull Cathedral poster, and the title screen's "ALL YOUR BASE RESERVED" | H, title | L |

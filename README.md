@@ -65,6 +65,7 @@ More in [Art direction](docs/art/art-direction.md#concept-gallery) and in
 | --- | --- |
 | [Implementation plan](docs/implementation-plan.md) | Vision, pillars, influences, requirements traceability, content budget, team, phases, risks, and gap decisions |
 | [Story and tone](docs/design/story-and-tone.md) | Premise, cast, story beats, both endings, and the humor guardrails |
+| [The Roster](docs/design/roster.md) | The 22 fake baseball names we keep, their source, and the rules for using them |
 | [World and map](docs/design/world-and-map.md) | The 13 areas, the gating matrix, the critical path, the Flip, and 200.6% |
 | [Player and combat](docs/design/player-and-combat.md) | Controls, movement numbers, abilities, weapons, damage formulas, bosses, and seals |
 | [Progression and loot](docs/design/progression-and-loot.md) | XP curve, stats, gear slots, rings, affixes, drops, Loot Luck, upgrades, and gems |
