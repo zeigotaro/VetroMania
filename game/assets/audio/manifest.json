@@ -1,0 +1,275 @@
+{
+  "music": {
+    "boss_krate": {
+      "bpm": 150,
+      "file": "music/boss_krate.wav",
+      "loop_begin": 0,
+      "loop_end": 819200,
+      "volume_db": -6.0
+    },
+    "crash_site": {
+      "bpm": 96,
+      "file": "music/crash_site.wav",
+      "loop_begin": 0,
+      "loop_end": 1280000,
+      "volume_db": -6.0
+    },
+    "hull_cathedral": {
+      "bpm": 108,
+      "file": "music/hull_cathedral.wav",
+      "loop_begin": 0,
+      "loop_end": 1137778,
+      "volume_db": -6.0
+    },
+    "outer_hull": {
+      "bpm": 128,
+      "file": "music/outer_hull.wav",
+      "loop_begin": 0,
+      "loop_end": 960000,
+      "volume_db": -6.0
+    }
+  },
+  "sfx": {
+    "ability_get": {
+      "file": "sfx/ability_get.wav",
+      "volume_db": 0.0
+    },
+    "backdash": {
+      "file": "sfx/backdash.wav",
+      "volume_db": 0.0
+    },
+    "bat_screech": {
+      "file": "sfx/bat_screech.wav",
+      "volume_db": 0.0
+    },
+    "boss_die": {
+      "file": "sfx/boss_die.wav",
+      "volume_db": 0.0
+    },
+    "boss_hit": {
+      "file": "sfx/boss_hit.wav",
+      "volume_db": 0.0
+    },
+    "boss_roar": {
+      "file": "sfx/boss_roar.wav",
+      "volume_db": 0.0
+    },
+    "boss_slam": {
+      "file": "sfx/boss_slam.wav",
+      "volume_db": 0.0
+    },
+    "boss_telegraph": {
+      "file": "sfx/boss_telegraph.wav",
+      "volume_db": 0.0
+    },
+    "crit": {
+      "file": "sfx/crit.wav",
+      "volume_db": 0.0
+    },
+    "death": {
+      "file": "sfx/death.wav",
+      "volume_db": 0.0
+    },
+    "dialogue_blip": {
+      "file": "sfx/dialogue_blip.wav",
+      "volume_db": 0.0
+    },
+    "door_locked": {
+      "file": "sfx/door_locked.wav",
+      "volume_db": 0.0
+    },
+    "door_open": {
+      "file": "sfx/door_open.wav",
+      "volume_db": 0.0
+    },
+    "double_jump": {
+      "file": "sfx/double_jump.wav",
+      "volume_db": 0.0
+    },
+    "enemy_die": {
+      "file": "sfx/enemy_die.wav",
+      "volume_db": 0.0
+    },
+    "enemy_hit": {
+      "file": "sfx/enemy_hit.wav",
+      "volume_db": 0.0
+    },
+    "equip_item": {
+      "file": "sfx/equip_item.wav",
+      "volume_db": 0.0
+    },
+    "hey_listen": {
+      "file": "sfx/hey_listen.wav",
+      "volume_db": 0.0
+    },
+    "hit_1": {
+      "file": "sfx/hit_1.wav",
+      "volume_db": 0.0
+    },
+    "hit_2": {
+      "file": "sfx/hit_2.wav",
+      "volume_db": 0.0
+    },
+    "hit_3": {
+      "file": "sfx/hit_3.wav",
+      "volume_db": 0.0
+    },
+    "hollow_tonk": {
+      "file": "sfx/hollow_tonk.wav",
+      "volume_db": 0.0
+    },
+    "home_run": {
+      "file": "sfx/home_run.wav",
+      "volume_db": 0.0
+    },
+    "hunch_hop": {
+      "file": "sfx/hunch_hop.wav",
+      "volume_db": 0.0
+    },
+    "hurt": {
+      "file": "sfx/hurt.wav",
+      "volume_db": 0.0
+    },
+    "jump": {
+      "file": "sfx/jump.wav",
+      "volume_db": 0.0
+    },
+    "land": {
+      "file": "sfx/land.wav",
+      "volume_db": 0.0
+    },
+    "level_up": {
+      "file": "sfx/level_up.wav",
+      "volume_db": 0.0
+    },
+    "menu_back": {
+      "file": "sfx/menu_back.wav",
+      "volume_db": 0.0
+    },
+    "menu_deny": {
+      "file": "sfx/menu_deny.wav",
+      "volume_db": 0.0
+    },
+    "menu_move": {
+      "file": "sfx/menu_move.wav",
+      "volume_db": 0.0
+    },
+    "menu_select": {
+      "file": "sfx/menu_select.wav",
+      "volume_db": 0.0
+    },
+    "mitt_charge_loop": {
+      "file": "sfx/mitt_charge_loop.wav",
+      "volume_db": 0.0
+    },
+    "mitt_charged_shot": {
+      "file": "sfx/mitt_charged_shot.wav",
+      "volume_db": 0.0
+    },
+    "mitt_shot": {
+      "file": "sfx/mitt_shot.wav",
+      "volume_db": 0.0
+    },
+    "pickup_coin": {
+      "file": "sfx/pickup_coin.wav",
+      "volume_db": 0.0
+    },
+    "pickup_gem": {
+      "file": "sfx/pickup_gem.wav",
+      "volume_db": 0.0
+    },
+    "pickup_item_common": {
+      "file": "sfx/pickup_item_common.wav",
+      "volume_db": 0.0
+    },
+    "pickup_item_magic": {
+      "file": "sfx/pickup_item_magic.wav",
+      "volume_db": 0.0
+    },
+    "pickup_item_rare": {
+      "file": "sfx/pickup_item_rare.wav",
+      "volume_db": 0.0
+    },
+    "save_pod": {
+      "file": "sfx/save_pod.wav",
+      "volume_db": 0.0
+    },
+    "seal_fail": {
+      "file": "sfx/seal_fail.wav",
+      "volume_db": 0.0
+    },
+    "seal_prompt": {
+      "file": "sfx/seal_prompt.wav",
+      "volume_db": 0.0
+    },
+    "seal_success": {
+      "file": "sfx/seal_success.wav",
+      "volume_db": 0.0
+    },
+    "slide": {
+      "file": "sfx/slide.wav",
+      "volume_db": 0.0
+    },
+    "spaceball_morph": {
+      "file": "sfx/spaceball_morph.wav",
+      "volume_db": 0.0
+    },
+    "spaceball_roll": {
+      "file": "sfx/spaceball_roll.wav",
+      "volume_db": 0.0
+    },
+    "swing_1": {
+      "file": "sfx/swing_1.wav",
+      "volume_db": 0.0
+    },
+    "swing_2": {
+      "file": "sfx/swing_2.wav",
+      "volume_db": 0.0
+    },
+    "swing_3": {
+      "file": "sfx/swing_3.wav",
+      "volume_db": 0.0
+    },
+    "tally_complete": {
+      "file": "sfx/tally_complete.wav",
+      "volume_db": 0.0
+    },
+    "tally_tick": {
+      "file": "sfx/tally_tick.wav",
+      "volume_db": 0.0
+    },
+    "title_start": {
+      "file": "sfx/title_start.wav",
+      "volume_db": 0.0
+    },
+    "toast": {
+      "file": "sfx/toast.wav",
+      "volume_db": 0.0
+    },
+    "upgrade_fail": {
+      "file": "sfx/upgrade_fail.wav",
+      "volume_db": 0.0
+    },
+    "upgrade_success": {
+      "file": "sfx/upgrade_success.wav",
+      "volume_db": 0.0
+    },
+    "wall_break": {
+      "file": "sfx/wall_break.wav",
+      "volume_db": 0.0
+    },
+    "wall_kick": {
+      "file": "sfx/wall_kick.wav",
+      "volume_db": 0.0
+    },
+    "warp_pipe": {
+      "file": "sfx/warp_pipe.wav",
+      "volume_db": 0.0
+    },
+    "zombie_groan": {
+      "file": "sfx/zombie_groan.wav",
+      "volume_db": 0.0
+    }
+  },
+  "version": 1
+}

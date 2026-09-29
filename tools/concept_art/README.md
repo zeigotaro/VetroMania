@@ -38,6 +38,7 @@ exactly. If `git status` shows changes after a run, the art changed.
 | `items/` | 24x24 icon atlas, the animated spaceball card, and a labeled 4x item sheet |
 | `mockups/` | Gameplay, mirror planet, title, equipment, and map screens at 640x360 and 1920x1080 |
 | `reference/` | Cast lineup with sprite heights, and material palette ramps |
+| `props/` | KRATE's boss-state sheet and GIF, a 4x prop/effect/gate gallery, and Sleve's extra traversal/combat poses |
 
 Files without a scale suffix are native resolution with transparency; they are
 what an engine would import. Files ending in `@2x`, `@3x`, or `@4x` are
@@ -51,12 +52,13 @@ nearest-neighbor previews for documentation.
 | `characters.py` | Sleve's rig. Poses are joint angles, so every animation shares one set of parts |
 | `enemies.py` | Space Bat, Astro-Zombie, Hunch-Bot, Mer-Man, and Vampress |
 | `bosses.py` | HotCoffee, the evil android barista |
+| `props.py` | KRATE, environmental props, pickups, effects, and extra gate tiles |
 | `world.py` | Tiles, the gothic window, and parallax layers: nebula sky, stars, ringed planet, spires, colonnade |
 | `items.py` | Gear and weapon icons, upgrade gems and gem packs, Vetro-Bucks, the spaceball card, and rarity frames |
 | `ui.py` | Panels, bars, labels, counters, and the HUD minimap |
 | `scenes.py` | The Hull Cathedral room, the gameplay mockup, and the flipped Ainamortev mockup |
 | `screens.py` | Title, equipment, and world map screens |
-| `generate.py` | Renders everything above into `assets/concept/` |
+| `generate.py` | Renders everything above into `assets/concept/`, including the prop gallery |
 
 ## How the renderer works
 
