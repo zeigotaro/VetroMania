@@ -1,8 +1,9 @@
 # VetroMania: Implementation Plan
 
-> **Status:** pre-production plan, v0.1. Everything here is a proposal to be
-> proven by the prototype and vertical slice. Numbers are starting values for
-> tuning, not promises.
+> **Status:** the plan is v0.2. The Phase 1 **vertical slice is playable** in
+> Godot 4.7 (see [12. Implementation status](#12-implementation-status)), and
+> the rest of this document is still a proposal to be proven by it. Numbers
+> are starting values for tuning, not promises.
 
 **VetroMania: Symphony of the Spaceball** is a 2D sci-fi Metroidvania.
 Space bounty hunter **Sleve Bonzalez** crash-lands on the gothic glass planet
@@ -26,18 +27,21 @@ over into its mirror, **Ainamortev**. Full exploration tops out at 200.6%.
 9. [Risks](#9-risks)
 10. [Assumptions and gap decisions](#10-assumptions-and-gap-decisions)
 11. [Open questions](#11-open-questions)
+12. [Implementation status](#12-implementation-status)
 
 Detailed design documents:
 
 | Document | Covers |
 | --- | --- |
 | [Story and tone](design/story-and-tone.md) | Premise, cast, story beats, endings, and humor guardrails |
-| [World and map](design/world-and-map.md) | The 13 areas, ability gating, the Flip, and 200.6% completion |
+| [The Roster](design/roster.md) | The 22 fake baseball names we keep, their source, and the rules for using them |
+| [World and map](design/world-and-map.md) | The 13 areas, ability gating, the Flip, 200.6% completion, and the vertical slice's layout |
 | [Player and combat](design/player-and-combat.md) | Controls, movement, abilities, damage, bosses, and Autograph Seals |
 | [Progression and loot](design/progression-and-loot.md) | XP and stats, gear slots, rarity, affixes, drops, and gem upgrades |
 | [Bestiary](design/bestiary.md) | Enemies, kill tallies and perks, mirror variants, and bosses |
 | [Reference ledger](design/reference-ledger.md) | 120 references and memes, with placement and legal-risk tags |
-| [Technical architecture](technical/architecture.md) | Engine, data model, loot generator, save and map systems, tools, and testing |
+| [Technical architecture](technical/architecture.md) | Engine, data model, loot generator, save and map systems, tools, and testing, plus how the slice differs |
+| [Level format](technical/level-format.md) | The room JSON files, the tile legend, entities, and the linter's rules |
 | [Art direction](art/art-direction.md) | Resolution, sprite specs, palettes, animation budgets, and pipeline |
 
 ## 1. Vision and pillars
@@ -285,18 +289,54 @@ The proposal left these open. Each is decided here and can be revisited.
 | Does the hub stay relevant? | Hull Cathedral's enemy level tracks story progress; every other area has fixed levels | Makes the hub a farming spot without scaling the whole world |
 | Does armor change Sleve's sprite? | No. Only the weapon class, a palette tint for full sets, and a glint at +5 show. The equipment screen's paper doll shows everything | Redrawing every armor piece on every animation frame would multiply the art budget |
 | Tone ceiling | ESRB T target. Crude language in Salty mode, bleeped in Decaf mode, and no slurs ever | Keeps the DudeBro satire without alienating players |
+| Whose names for the spaceball roster | **Decided:** keep the exact fake names from the *Fighting Baseball* meme, as found. Names only, credited, and never the real athletes they distort. See [The Roster](design/roster.md) | The joke is Sleve's whole identity, and names live in one data file, so a legal-review swap is cheap |
+| How does the player interact with things | Up talks to holograms, enters doors and warp pipes, and uses save pods | Matches the Castlevania convention and needs no extra button |
 
 ## 11. Open questions
 
 1. **Voice acting.** Barks only (budget) or fully voiced cutscenes? The plan
    assumes barks plus text.
-2. **Real card names.** The spaceball roster riffs on a famous fake-name
-   meme. Do we keep those exact names or write new ones in the same style?
-   See the [reference ledger](design/reference-ledger.md).
-3. **Couch co-op.** Not planned. NAG-9000, the companion drone, could become
+2. **Couch co-op.** Not planned. NAG-9000, the companion drone, could become
    a player-two helper post-launch.
-4. **Leaderboards** for Boss Rush and speedruns (the Metroid-style ending
+3. **Leaderboards** for Boss Rush and speedruns (the Metroid-style ending
    reward for a sub-3-hour clear).
+
+**Resolved:** the spaceball roster keeps the exact *Fighting Baseball* names
+(see [The Roster](design/roster.md)). The reference ledger keeps the entry at
+risk M for the legal pass in Phase 4.
+
+## 12. Implementation status
+
+The Phase 1 vertical slice is **playable**: Sleve crashes on Crash Site Z-0,
+works through Hull Cathedral, climbs the Outer Hull, and finishes **KRATE**
+with an Autograph Seal. It runs on Godot 4.7.2 and needs no engine build. See
+the [README](../README.md#play-the-slice) for how to run it, and
+[Vertical slice as built](technical/architecture.md#vertical-slice-as-built)
+for the ways the code differs from the plan on purpose.
+
+| # | Epic (from the [backlog](#vertical-slice-backlog-phase-1-epics)) | State | What's there, and what's missing |
+| --- | --- | --- | --- |
+| 1 | Player controller | Done | Run, variable-height jump with coyote time and a buffer, slide, backdash, Spaceball, Wall Kick, Jetpack, hurt with knockback, and death. It's a mode enum, not the plan's hierarchical state machine |
+| 2 | Combat | Done | The Beam Bat three-hit chain, plus whip, mallet, and cutter families. The Mitt Cannon charge shot, hit-stop, damage numbers, crits, and elemental weaknesses and resistances |
+| 3 | Enemies | Partial | 3 of 8 types (Space Bat, Astro-Zombie, and Hunch-Bot), data-driven, with elites and affixes |
+| 4 | Boss | Done | KRATE has two phases, telegraphed attacks, and the Seal 1 finisher, which the signing table teaches first |
+| 5 | World | Partial | 13 cells, not about 40. Save pods, two warp pipes, the map screen, and the minimap. One seamless tile grid, so there are no door transitions |
+| 6 | Loot v1 | Done, and more | All five rarities, including 5 legendaries and 1 set. Six armor slots, two rings, and four weapon families. 26 affixes, Loot Luck, bad-luck protection, and rarity-colored loot beams |
+| 7 | Upgrades v1 | Done | Gem packs, the upgrade bench at save pods, salvage, and level-band caps |
+| 8 | Tallies v1 | Done | Counters, the toast, the Tallies tab, and three perks with a Knack loadout |
+| 9 | UI | Done | HUD, equipment, tallies, map, and system tabs, plus the pod, warp, and montage menus. Keyboard and gamepad. Not remappable yet |
+| 10 | Audio | Done | Three area tracks, the boss theme, and the core sound effects, all synthesized by `tools/game_assets/audio.py` |
+| 11 | Tools | Partial | Loot simulator v1, the level linter and previewer, deterministic asset checks, and CI. The reachability solver is replaced for now by physics bot tests, and there's no data-schema validator beyond the tests |
+| 12 | Humor pass | Partial | The *Fighting Baseball* roster speaks in eleven places, and the rooms carry hints and jokes. The 40-reference count and the Salty and Decaf language modes aren't built |
+
+The slice's tests are the exit gate for now. Sixteen suites and about 66,800
+checks run in under a minute, a bot plays the real level with real physics,
+and `smoke.gd` plays from the title screen to the end card through the real
+UI. The external playtest that closes Phase 1 hasn't happened.
+
+**Next.** The Phase 1 exit criteria still need a longer slice (the other 27
+cells and five more enemy types), then the solver, then a playtest. After that,
+Phase 2 builds out the rest of Planet VetroMania.
 
 ## Concept assets
 

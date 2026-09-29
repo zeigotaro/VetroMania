@@ -1,0 +1,16 @@
+{
+  "_comment": "Fabricated schema-0 save: a flat prototype layout that exists only to exercise the migration path. The game has never shipped this format.",
+  "version": 0,
+  "lvl": 3,
+  "exp": 120,
+  "money": 44,
+  "hp": 80,
+  "abilities": "beam_bat,mitt_cannon",
+  "visited": "0,1;1,1;2,1",
+  "room": "crash_2",
+  "items": [
+    {"n": "Foam Bat", "t": "bat", "il": 1, "r": "common"},
+    {"n": "Mystery Meat", "t": "sandwich", "il": 2, "r": "common"},
+    {"n": "Moon Boots", "t": "boots", "il": 2, "r": "magic"}
+  ]
+}

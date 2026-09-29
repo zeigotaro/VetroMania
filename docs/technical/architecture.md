@@ -17,6 +17,117 @@ once the movement prototype has been profiled.
 GDScript covers gameplay. If profiling demands it, hot spots (the loot
 simulator's inner loop, say) can move to a GDExtension written in C++.
 
+## Vertical slice as built
+
+Most of this document describes the **target** architecture. The vertical
+slice builds a subset of it in Godot 4.7, and where it took a different route,
+the difference is deliberate and listed here.
+
+### What exists
+
+| System | State |
+| --- | --- |
+| Player movement | Run, variable-height jump with coyote time and a jump buffer, backdash, crouch and slide, Spaceball, Wall Kick, Jetpack, the bat combo, and the Mitt Cannon charge shot. The numbers come from [Player and combat](../design/player-and-combat.md) and tests pin them |
+| Combat | Hit and hurt areas, one damage pipeline, hit-stop, screen shake, and damage numbers |
+| Stats and leveling | The XP curve to Lv 50, five stats, and the Training Montage |
+| Loot and gear | Drop tables, Loot Luck with diminishing returns, bad-luck protection, affixes, legendaries, sets, and gem packs. Ten equipment slots (rings unlock at Lv 20 and 37), level-band upgrade caps, and the pod's upgrade bench |
+| Enemies and boss | Space Bats, Astro-Zombies, and Hunch-Bots with elites and affixes, and **KRATE**, a two-phase boss finished by an Autograph Seal |
+| Kill Tallies | Counting, thresholds, perks, and the Knack slot |
+| World | 11 rooms in 13 cells with props, gates, secrets, warp pipes, and save pods (see [The vertical slice](../design/world-and-map.md#the-vertical-slice)) |
+| Saves | Three slots, versioned JSON, and atomic writes with a `.bak` fallback |
+| UI | Title, slot, and difficulty screens, HUD, dialogue, and the pause menu (equipment, tallies, map, and system), plus the pod, warp, montage, seal, death, and end screens |
+| Settings | Music and sound volume, screen shake, damage numbers, game speed, seal assist, and fullscreen |
+| Audio | Procedural music and sound effects from `tools/game_assets/audio.py`, played by `AudioService` |
+
+### Where the slice differs from the plan
+
+| Plan | Slice | Why |
+| --- | --- | --- |
+| Autoload services | Static singletons: `GameState.current`, `AudioService.instance`, `Combat.hitstop`, `Settings`, and `SaveFiles.root` | A test or tool can build a world without project settings, and each singleton is trivially swapped or reset |
+| Data as `.tres` resources | JSON in `game/data/`, read once by `Db` | It diffs well, the Python tools read the same files, and there's no editor round trip |
+| One scene per room, streamed, with fades | One global tile grid, built once by `WorldBuilder`. Rooms sit at their map cells, so there are no door transitions, and the camera clamps to the current room | Seamless and simple, and a physics bot can walk the whole level |
+| A SubViewport, with bloom at native resolution | The project's viewport stretch mode with integer scaling. There is no bloom yet | The engine does the integer scaling, and the look holds without bloom |
+| GdUnit4 | A runner of about 70 lines (`tests/run_tests.gd` and `test_case.gd`) that runs every `test_*.gd` under `--headless --fixed-fps 60` | No addon to keep in step with the engine, and runs are deterministic once the RNG is seeded |
+| A Python reachability solver | Physics bot tests (`test_route.gd` and `test_secrets.gd`) that play the real level, plus the room linter | With 13 cells, playing the level proves more than modelling it. The solver is still the plan for the full map |
+| Control-node UI with a theme | Immediate-mode painting: every screen draws itself in `_draw()` with `UIKit` helpers and a 5 x 7 bitmap font | Pixel-exact, and there's nothing to lay out or theme |
+| `gdlint` and `gdformat` in CI | Not yet | The compile check catches parse and type errors already |
+
+**Still to build.** Everything else in the plan: the other ten areas and their
+abilities, the Flip and Ainamortev, the remaining bosses and seals, the Anvil
+and Deckard shops, the Bestiary tab, mirror variants, the Holy Shades, music
+layering (the slice shifts pitch instead), true slow motion for the Seal
+(the slice freezes the frame), a title-screen options page (options live in
+the pause menu's SYSTEM tab), remappable controls, and export builds.
+
+### Layout as built
+
+```text
+VetroMania/
+├── assets/concept/       procedural concept art (reference only)
+├── docs/                 the plan, the design documents, and docs/screens/
+├── game/                 the Godot project: GL Compatibility, 640x360, integer scaling
+│   ├── main.gd, main.tscn   boots the game and owns the modal stack
+│   ├── actors/           player, enemies, KRATE, pickups, enemy bolts
+│   ├── combat/           hit and hurt areas, projectiles, hazards, hit-stop
+│   ├── core/             rules and state with no scene dependencies (stats, damage, loot, gear, saves, level)
+│   ├── world/            World, WorldBuilder, props, gates, camera, and parallax
+│   ├── ui/               HUD and every menu, painted with UIKit
+│   ├── data/             JSON: items, affixes, perks, enemies, areas, roster, and rooms/*.json
+│   ├── assets/           generated sprites, tiles, UI art, and audio (tools/game_assets)
+│   └── tests/            suites, the bot harness, the smoke test, the screenshot tour, and the loot simulator
+├── tools/
+│   ├── godot.py          import, compile, test, smoke, shots, and script runner
+│   ├── level_tools.py    room lint and preview (see docs/technical/level-format.md)
+│   ├── game_assets/      deterministic asset exporter and audio synthesis
+│   └── concept_art/      concept-art generator
+└── .github/workflows/    CI
+```
+
+### Running it
+
+```sh
+python tools/godot.py test                 # import, compile every script, run all suites (headless)
+python tools/godot.py test --filter=loot   # only suites whose name contains "loot"
+python tools/godot.py smoke                # play the whole slice through the real UI, headless
+python tools/godot.py shots [OUT_DIR]      # windowed screenshot tour (needs a display and a GPU)
+python tools/godot.py script res://tests/loot_sim.gd -- --kills=200000 --level=20 --source=fodder
+python tools/level_tools.py lint           # check every room
+```
+
+Set `GODOT` to the Godot 4.7 binary if it isn't on `PATH`. The wrapper also
+scans Godot's output for script errors, because Godot exits with 0 after
+most of them.
+
+### The slice's tests
+
+Sixteen suites and about 66,800 checks run in under a minute, with identical
+results on Windows and Linux. They cover the core rules and data (stats,
+damage, loot, items, gear upgrades, tallies, saves, and seal input), the actors
+(the player, enemies, and KRATE), the real level (geometry, gates, secrets, and
+the critical path), and the UI. `smoke.gd` then plays the slice from the title
+screen to the end card through the real `Main`. It uses a fixed seed by
+default, and `--seed N` tries others.
+
+A **bot harness** (`tests/world_run.gd`) builds the real `World` with scripted
+input and helpers such as `go(feet)`, `climb(top_y)`, and `swing()`. That is
+how the tests prove the Wall Kick shaft needs the kick, the floating chest
+needs the Jetpack, and the critical path is walkable.
+
+**The loot simulator** (`tests/loot_sim.gd`) drives the real `Loot` code. It
+prints the drop mix, the rarity mix of gear, gem packs, and the longest stretch
+without a legendary for any source, level, and Loot Luck. The milestone
+schedules and time-to-kill checks described below are still to build.
+
+### Continuous integration
+
+`.github/workflows/ci.yml` runs on every pull request, in two jobs:
+
+- **game**: Godot 4.7.2 on Ubuntu runs the unit tests (import, compile, and
+  all suites) and the smoke test.
+- **data**: the room linter, plus `export.py --check` and `audio.py --check`,
+  which regenerate the committed art and audio and fail on any difference.
+  PNGs are compared by pixels, so a different zlib build doesn't matter.
+
 ## Rendering
 
 - **Native resolution is 640x360**, rendered in a SubViewport and
@@ -126,7 +237,9 @@ the kill counter, so any drop can be replayed from a bug report.
 7. Mark legendary and set items unidentified.
 
 **The simulator** (`game/tools/loot_sim.gd`) runs the real `LootService` in
-headless Godot. It never reimplements it, so the two can't drift. It plays
+headless Godot. It never reimplements it, so the two can't drift. (The slice's
+first version is [`game/tests/loot_sim.gd`](#the-slices-tests), which drives
+`Loot`.) It plays
 scripted kill schedules for each milestone (for example, "Normal, thorough,
 end of Planet VetroMania") and checks:
 
@@ -227,6 +340,9 @@ editor plugin exports from the room data.
 | Concept art | [`tools/concept_art/`](../../tools/concept_art) | Reference only; never shipped |
 
 ## Continuous integration
+
+The target list follows. The slice's own CI is
+[described above](#continuous-integration).
 
 GitHub Actions runs on every pull request:
 

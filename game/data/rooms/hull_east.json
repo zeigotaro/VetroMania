@@ -1,0 +1,38 @@
+{
+  "id": "hull_east", "area": "hull", "cell": [6, 1], "size": [1, 1], "title": "HULL CATHEDRAL: THE CLOISTER",
+  "tiles": [
+    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "BB------------------------------------BB",
+    "BB..L...............L.........P.L..P..BB",
+    "BB............................P....P..BB",
+    "BB........................ggg.P....P..BB",
+    "BB........................ggg.P....P..BB",
+    "BB........................ggg.P....P..BB",
+    "BB............................P....P..BB",
+    "BB............................P....P..BB",
+    "BB............................P....P..BB",
+    "BB............................P....P..BB",
+    "BB............................P....P..BB",
+    "BB............................P....P..BB",
+    "BB........====BBBBBBBBBBBB....P....P..BB",
+    "..............BBBBBBBBBBBB....P....P..XX",
+    "..............%%bbbbbbbbBB....P....P..XX",
+    "......====....%%bbbbbbbbBB....P....P..XX",
+    "..............%%bbbbbbbbBB....P....P..XX",
+    "..............%%bbbbbbbbBB....P....P..XX",
+    "########################################",
+    "########################################",
+    "########################################"
+  ],
+  "entities": [
+    {"type": "npc", "at": [12, 19], "name": "Willie Dustice"},
+    {"type": "chest", "at": [19, 19], "level": 5, "secret": true},
+    {"type": "table", "at": [31, 19]},
+    {"type": "hint", "at": [31, 19], "size": [4, 5], "text": "THE SIGNING TABLE. PRACTICE YOUR SEAL HERE"},
+    {"type": "enemy", "at": [6, 19], "id": "hunch_bot"},
+    {"type": "enemy", "at": [27, 19], "id": "hunch_bot"},
+    {"type": "enemy", "at": [34, 19], "id": "hunch_bot"},
+    {"type": "hint", "at": [36, 19], "size": [4, 6], "text": "THE CRATES LOOK LOOSE. WHY NOT SWING?"}
+  ]
+}

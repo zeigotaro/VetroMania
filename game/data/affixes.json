@@ -1,0 +1,33 @@
+{
+  "_comment": "26 of the 80-affix pool: every affix in the design doc's sample tables except Turbo (Blast Processing is not in the slice). Each affix spans min..max over five equal tier bands; tier k unlocks at tier_ilvl[k-1]. No affix grants traversal.",
+  "tier_ilvl": [1, 13, 25, 37, 48],
+  "affixes": [
+    {"id": "sturdy",      "kind": "prefix", "names": ["Sturdy", "Reinforced", "Hardened", "Titanium", "Adamant"],         "group": "armor_pct",   "stat": "armor_pct",   "slots": ["armor"],                   "min": 10, "max": 60, "text": "+{v}% armor",                 "tags": ["defense"]},
+    {"id": "sharp",       "kind": "prefix", "names": ["Sharp", "Keen", "Razor-Sharp", "Monofilament", "Ultra-Sharp"],     "group": "damage_pct",  "stat": "damage_pct",  "slots": ["weapon"],                  "min": 10, "max": 90, "text": "+{v}% damage",                "tags": ["offense"]},
+    {"id": "hearty",      "kind": "prefix", "names": ["Hearty"],      "group": "hp",           "stat": "hp",           "slots": ["armor", "ring"],           "min": 10, "max": 80, "text": "+{v} HP",                     "tags": ["defense"]},
+    {"id": "charged",     "kind": "prefix", "names": ["Charged"],     "group": "ep",           "stat": "ep",           "slots": ["armor", "ring"],           "min": 5,  "max": 35, "text": "+{v} EP",                     "tags": ["utility"]},
+    {"id": "insulated",   "kind": "prefix", "names": ["Insulated"],   "group": "resist_cryo",  "stat": "resist_cryo",  "slots": ["armor", "ring"],           "min": 8,  "max": 30, "text": "+{v}% CRYO resist",           "tags": ["defense"]},
+    {"id": "fireproof",   "kind": "prefix", "names": ["Fireproof"],   "group": "resist_heat",  "stat": "resist_heat",  "slots": ["armor", "ring"],           "min": 8,  "max": 30, "text": "+{v}% HEAT resist",           "tags": ["defense"]},
+    {"id": "grounded",    "kind": "prefix", "names": ["Grounded"],    "group": "resist_volt",  "stat": "resist_volt",  "slots": ["armor", "ring"],           "min": 8,  "max": 30, "text": "+{v}% VOLT resist",           "tags": ["defense"]},
+    {"id": "scorching",   "kind": "prefix", "names": ["Scorching"],   "group": "dmg_heat",     "stat": "dmg_heat",     "slots": ["weapon"],                  "min": 3,  "max": 60, "text": "+{v} HEAT damage",            "tags": ["offense"]},
+    {"id": "frosty",      "kind": "prefix", "names": ["Frosty"],      "group": "dmg_cryo",     "stat": "dmg_cryo",     "slots": ["weapon"],                  "min": 3,  "max": 60, "text": "+{v} CRYO damage",            "tags": ["offense"]},
+    {"id": "zappy",       "kind": "prefix", "names": ["Zappy"],       "group": "dmg_volt",     "stat": "dmg_volt",     "slots": ["weapon"],                  "min": 3,  "max": 60, "text": "+{v} VOLT damage",            "tags": ["offense"]},
+    {"id": "toxic",       "kind": "prefix", "names": ["Toxic"],       "group": "dmg_bio",      "stat": "dmg_bio",      "slots": ["weapon"],                  "min": 3,  "max": 60, "text": "+{v} BIO damage",             "tags": ["offense"]},
+    {"id": "lucky",       "kind": "prefix", "names": ["Lucky"],       "group": "loot_luck",    "stat": "loot_luck",    "slots": ["armor", "ring"],           "min": 3,  "max": 15, "text": "+{v}% Loot Luck",             "tags": ["utility"]},
+    {"id": "overclocked", "kind": "prefix", "names": ["Overclocked"], "group": "slide_pct",    "stat": "slide_pct",    "slots": ["boots", "leggings"],       "min": 6,  "max": 20, "text": "+{v}% slide and backdash distance", "tags": ["utility"]},
+    {"id": "vampiric",    "kind": "prefix", "names": ["Vampiric"],    "group": "vamp_pct",     "stat": "vamp_pct",     "slots": ["gloves", "weapon", "ring"], "min": 1, "max": 4,  "dec": 1, "text": "{v}% of melee damage returned as HP", "tags": ["offense"]},
+
+    {"id": "bro",         "kind": "suffix", "names": ["of the Bro"],      "group": "stat_str", "stat": "str", "slots": ["any"], "min": 1, "max": 15, "text": "+{v} STR", "tags": ["offense"]},
+    {"id": "tank",        "kind": "suffix", "names": ["of the Tank"],     "group": "stat_con", "stat": "con", "slots": ["any"], "min": 1, "max": 15, "text": "+{v} CON", "tags": ["defense"]},
+    {"id": "nerd",        "kind": "suffix", "names": ["of the Nerd"],     "group": "stat_int", "stat": "int", "slots": ["any"], "min": 1, "max": 15, "text": "+{v} INT", "tags": ["utility"]},
+    {"id": "ninja",       "kind": "suffix", "names": ["of the Ninja"],    "group": "stat_dex", "stat": "dex", "slots": ["any"], "min": 1, "max": 15, "text": "+{v} DEX", "tags": ["offense"]},
+    {"id": "gambler",     "kind": "suffix", "names": ["of the Gambler"],  "group": "stat_lck", "stat": "lck", "slots": ["any"], "min": 1, "max": 15, "text": "+{v} LCK", "tags": ["utility"]},
+    {"id": "sniper",      "kind": "suffix", "names": ["of the Sniper"],   "group": "crit_chance", "stat": "crit_chance", "slots": ["weapon", "gloves", "ring"],   "min": 1,  "max": 6,  "text": "+{v}% crit chance",  "tags": ["offense"]},
+    {"id": "headshot",    "kind": "suffix", "names": ["of the Headshot"], "group": "crit_damage", "stat": "crit_damage", "slots": ["weapon", "helmet", "ring"],   "min": 10, "max": 50, "text": "+{v}% crit damage",  "tags": ["offense"]},
+    {"id": "haste",       "kind": "suffix", "names": ["of Haste"],        "group": "attack_speed", "stat": "attack_speed", "slots": ["weapon", "gloves"],        "min": 5,  "max": 20, "text": "+{v}% attack speed", "tags": ["offense"]},
+    {"id": "regeneration", "kind": "suffix", "names": ["of Regeneration"], "group": "hp_regen", "stat": "hp_regen", "slots": ["chest", "ring"],               "min": 1,  "max": 8,  "text": "+{v} HP per second outside combat", "tags": ["defense"]},
+    {"id": "thorns",      "kind": "suffix", "names": ["of Thorns"],       "group": "thorns_pct", "stat": "thorns_pct", "slots": ["armor"],                     "min": 5,  "max": 25, "text": "Reflects {v}% of melee damage taken", "tags": ["defense"]},
+    {"id": "mailman",     "kind": "suffix", "names": ["of the Mailman"],  "group": "bucks_pct", "stat": "bucks_pct", "slots": ["armor", "ring"],               "min": 5,  "max": 40, "text": "+{v}% Vetro-Bucks found", "tags": ["utility"]},
+    {"id": "leeroy",      "kind": "suffix", "names": ["of the Leeroy"],   "group": "battle_cry", "stat": "battle_cry", "slots": ["boots", "helmet", "chest"],   "min": 10, "max": 30, "text": "Battle Cry: taunting gives +{v}% damage for 3 s", "tags": ["offense"]}
+  ]
+}

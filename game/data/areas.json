@@ -1,0 +1,20 @@
+{
+  "_comment": "Areas of the slice, from docs/design/world-and-map.md. Hull Cathedral (hub) enemies match the lowest level of the newest unlocked area; its elites are +2. Entry needs are informational: rooms enforce them through gates.",
+  "order": ["crash", "hull", "outer"],
+  "areas": {
+    "crash": {"code": "C", "name": "Crash Site Z-0", "color": "#6f8cff", "levels": [1, 3], "tileset": "crash", "background": "crash", "music": "crash_site", "entry_needs": ""},
+    "hull":  {"code": "H", "name": "Hull Cathedral", "color": "#8a6cff", "levels": [0, 0], "hub": true, "tileset": "hull", "background": "hull", "music": "hull_cathedral", "entry_needs": ""},
+    "outer": {"code": "O", "name": "Outer Hull", "color": "#4fb3ff", "levels": [5, 10], "tileset": "outer", "background": "outer", "music": "outer_hull", "entry_needs": "beam_bat"}
+  },
+  "boss_music": "boss_krate",
+  "abilities": {
+    "beam_bat":    {"name": "Beam Bat",    "text": "Smashes crate bulkheads. Also hits things."},
+    "mitt_cannon": {"name": "Mitt Cannon", "text": "Hold Sub-weapon to charge. A full charge triggers mitt targets."},
+    "spaceball":   {"name": "Spaceball",   "text": "Double-tap Down to morph. Fits 2-tile tunnels."},
+    "wall_kick":   {"name": "Wall Kick",   "text": "Jump off walls. Chains between facing walls."},
+    "jetpack":     {"name": "Jetpack",     "text": "A second jump in mid-air."}
+  },
+  "seals": {
+    "1": {"name": "Fastball", "tokens": ["D", "DF", "F", "A"], "text": "Down, Down-Forward, Forward, then Attack"}
+  }
+}

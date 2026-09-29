@@ -250,6 +250,26 @@ def jump() -> list[Pose]:
     ]
 
 
+def slide() -> list[Pose]:
+    return [Pose(body=(1, 7), upper=(6, 9), near_leg=(1.22, -1.48), far_leg=(0.7, -1.05), near_foot=-0.9,
+                 far_foot=-0.45, near_arm=(1.9, 0.2), far_arm=(1.65, 0.35), hair=0.35)]
+
+
+def backdash() -> list[Pose]:
+    return [Pose(body=(-4, 1), upper=(-7, -2), near_leg=(-0.48, -0.12), far_leg=(-0.72, -0.12), near_foot=-0.3,
+                 far_foot=-0.48, near_arm=(-1.2, -0.1), far_arm=(-1.35, -0.1), hair=-0.18)]
+
+
+def hurt() -> list[Pose]:
+    return [Pose(body=(-3, -1), upper=(-3, -2), near_leg=(0.18, -0.4), far_leg=(-0.28, -0.22), near_foot=0.05,
+                 far_foot=-0.12, near_arm=(-0.55, -0.9), far_arm=(-1.15, -0.55), hair=-0.22)]
+
+
+def wall_slide() -> list[Pose]:
+    return [Pose(body=(13, 2), upper=(13, -2), near_leg=(0.2, -0.55), far_leg=(-0.02, -0.35), near_foot=0.08,
+                 far_foot=-0.06, near_arm=(2.7, 0.0), far_arm=(1.85, 0.2), hair=-0.18)]
+
+
 def spaceball(frames: int = 4) -> list[Sprite]:
     """Spaceball mode: Sleve curls into a stitched, armored ball that rolls."""
     sprites = []

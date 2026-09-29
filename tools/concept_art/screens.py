@@ -41,7 +41,7 @@ def _chrome_logo(c: Canvas, text: str, y: int, scale: int) -> None:
     c.add_glow(mask, (255, 90, 200), x, y, strength=0.18)
 
 
-def title() -> Canvas:
+def title(start: bool = True) -> Canvas:
     c = Canvas(W, H)
     world.sky(c, seed=8)
     world.stars(c, seed=12, count=320)
@@ -57,8 +57,9 @@ def title() -> Canvas:
     c.text((W - text_width(subtitle, 2)) // 2, 118, subtitle, (255, 110, 200), scale=2, glow=(255, 60, 180))
     tag = "STARRING SLEVE BONZALEZ  -  IT'S STRAIGHT UP SPACE TIME"
     c.text((W - text_width(tag)) // 2, 146, tag, (140, 230, 255))
-    start = "PRESS START"
-    c.text((W - text_width(start, 2)) // 2, 292, start, (255, 214, 64), scale=2, glow=(255, 170, 40))
+    if start:
+        prompt = "PRESS START"
+        c.text((W - text_width(prompt, 2)) // 2, 292, prompt, (255, 214, 64), scale=2, glow=(255, 170, 40))
     legal = "(C) 199X VETROSOFT - ALL YOUR BASE RESERVED"
     c.text((W - text_width(legal)) // 2, 340, legal, (150, 140, 180))
     c.bloom(radius=6, strength=0.8)

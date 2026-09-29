@@ -1,0 +1,1029 @@
+{
+  "backgrounds": {
+    "crash": {
+      "far": "backgrounds/crash_far.png",
+      "mid": "backgrounds/crash_mid.png",
+      "near": "backgrounds/crash_near.png"
+    },
+    "hull": {
+      "far": "backgrounds/hull_far.png",
+      "mid": "backgrounds/hull_mid.png",
+      "near": "backgrounds/hull_near.png"
+    },
+    "outer": {
+      "far": "backgrounds/outer_far.png",
+      "mid": "backgrounds/outer_mid.png",
+      "near": "backgrounds/outer_near.png"
+    }
+  },
+  "items": {
+    "icons": {
+      "columns": 8,
+      "file": "items/icons.png",
+      "icon_size": 24,
+      "index": {
+        "beam_bat": [
+          0,
+          1
+        ],
+        "boots": [
+          5,
+          0
+        ],
+        "box_cutter": [
+          3,
+          2
+        ],
+        "chest": [
+          1,
+          0
+        ],
+        "energy_drink": [
+          7,
+          2
+        ],
+        "gauntlets": [
+          2,
+          0
+        ],
+        "gem_armor_blue": [
+          5,
+          1
+        ],
+        "gem_armor_ruby": [
+          6,
+          1
+        ],
+        "gem_armor_white": [
+          4,
+          1
+        ],
+        "gem_weapon_blue": [
+          0,
+          2
+        ],
+        "gem_weapon_ruby": [
+          1,
+          2
+        ],
+        "gem_weapon_white": [
+          7,
+          1
+        ],
+        "gloves": [
+          3,
+          0
+        ],
+        "helm": [
+          0,
+          0
+        ],
+        "leggings": [
+          4,
+          0
+        ],
+        "mega_mallet": [
+          2,
+          2
+        ],
+        "mitt_cannon": [
+          1,
+          1
+        ],
+        "plasma_whip": [
+          2,
+          1
+        ],
+        "ring_band": [
+          6,
+          0
+        ],
+        "ring_halo": [
+          7,
+          0
+        ],
+        "space_burrito": [
+          6,
+          2
+        ],
+        "spread_gun": [
+          4,
+          2
+        ],
+        "throwable": [
+          5,
+          2
+        ],
+        "vetro_buck": [
+          3,
+          1
+        ]
+      }
+    },
+    "rarity_frames": {
+      "file": "items/rarity_frames.png",
+      "order": [
+        "common",
+        "magic",
+        "rare",
+        "legendary",
+        "set"
+      ],
+      "size": 28
+    },
+    "spaceball_card": {
+      "file": "items/spaceball_card.png",
+      "frame_size": [
+        24,
+        32
+      ],
+      "frames": 6
+    }
+  },
+  "sprites": {
+    "bosses/cold_brew": {
+      "bbox": [
+        1,
+        1,
+        126,
+        189
+      ],
+      "file": "sprites/bosses/cold_brew.png",
+      "fps": 5.5,
+      "frame_size": [
+        126,
+        190
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        63,
+        190
+      ]
+    },
+    "bosses/hot_coffee": {
+      "bbox": [
+        1,
+        1,
+        126,
+        189
+      ],
+      "file": "sprites/bosses/hot_coffee.png",
+      "fps": 5.5,
+      "frame_size": [
+        126,
+        190
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        63,
+        190
+      ]
+    },
+    "bosses/krate_chomp": {
+      "bbox": [
+        11,
+        0,
+        134,
+        120
+      ],
+      "file": "sprites/bosses/krate_chomp.png",
+      "fps": 8.0,
+      "frame_size": [
+        144,
+        120
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        72,
+        120
+      ]
+    },
+    "bosses/krate_idle": {
+      "bbox": [
+        11,
+        13,
+        134,
+        120
+      ],
+      "file": "sprites/bosses/krate_idle.png",
+      "fps": 3.0,
+      "frame_size": [
+        144,
+        120
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        72,
+        120
+      ]
+    },
+    "bosses/krate_slam": {
+      "bbox": [
+        11,
+        13,
+        134,
+        120
+      ],
+      "file": "sprites/bosses/krate_slam.png",
+      "fps": 8.0,
+      "frame_size": [
+        144,
+        120
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        72,
+        120
+      ]
+    },
+    "bosses/krate_windup": {
+      "bbox": [
+        11,
+        0,
+        134,
+        120
+      ],
+      "file": "sprites/bosses/krate_windup.png",
+      "fps": 8.0,
+      "frame_size": [
+        144,
+        120
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        72,
+        120
+      ]
+    },
+    "enemies/astro_zombie": {
+      "bbox": [
+        1,
+        1,
+        47,
+        70
+      ],
+      "file": "sprites/enemies/astro_zombie.png",
+      "fps": 7.0,
+      "frame_size": [
+        47,
+        70
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        23,
+        70
+      ]
+    },
+    "enemies/astro_zombie_mirror": {
+      "bbox": [
+        1,
+        1,
+        47,
+        70
+      ],
+      "file": "sprites/enemies/astro_zombie_mirror.png",
+      "fps": 7.0,
+      "frame_size": [
+        47,
+        70
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        23,
+        70
+      ]
+    },
+    "enemies/hunch_bot": {
+      "bbox": [
+        1,
+        0,
+        49,
+        58
+      ],
+      "file": "sprites/enemies/hunch_bot.png",
+      "fps": 7.0,
+      "frame_size": [
+        50,
+        59
+      ],
+      "frames": 3,
+      "loop": true,
+      "pivot": [
+        25,
+        59
+      ]
+    },
+    "enemies/hunch_bot_mirror": {
+      "bbox": [
+        1,
+        0,
+        49,
+        58
+      ],
+      "file": "sprites/enemies/hunch_bot_mirror.png",
+      "fps": 7.0,
+      "frame_size": [
+        50,
+        59
+      ],
+      "frames": 3,
+      "loop": true,
+      "pivot": [
+        25,
+        59
+      ]
+    },
+    "enemies/mer_man": {
+      "bbox": [
+        1,
+        0,
+        31,
+        82
+      ],
+      "file": "sprites/enemies/mer_man.png",
+      "fps": 7.0,
+      "frame_size": [
+        32,
+        83
+      ],
+      "frames": 3,
+      "loop": true,
+      "pivot": [
+        16,
+        83
+      ]
+    },
+    "enemies/mer_man_mirror": {
+      "bbox": [
+        1,
+        0,
+        31,
+        82
+      ],
+      "file": "sprites/enemies/mer_man_mirror.png",
+      "fps": 7.0,
+      "frame_size": [
+        32,
+        83
+      ],
+      "frames": 3,
+      "loop": true,
+      "pivot": [
+        16,
+        83
+      ]
+    },
+    "enemies/space_bat": {
+      "bbox": [
+        0,
+        1,
+        52,
+        34
+      ],
+      "file": "sprites/enemies/space_bat.png",
+      "fps": 7.0,
+      "frame_size": [
+        52,
+        35
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        26,
+        17
+      ]
+    },
+    "enemies/space_bat_mirror": {
+      "bbox": [
+        0,
+        1,
+        52,
+        34
+      ],
+      "file": "sprites/enemies/space_bat_mirror.png",
+      "fps": 7.0,
+      "frame_size": [
+        52,
+        35
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        26,
+        17
+      ]
+    },
+    "enemies/vampress": {
+      "bbox": [
+        1,
+        0,
+        48,
+        81
+      ],
+      "file": "sprites/enemies/vampress.png",
+      "fps": 7.0,
+      "frame_size": [
+        49,
+        82
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        24,
+        82
+      ]
+    },
+    "enemies/vampress_mirror": {
+      "bbox": [
+        1,
+        0,
+        48,
+        81
+      ],
+      "file": "sprites/enemies/vampress_mirror.png",
+      "fps": 7.0,
+      "frame_size": [
+        49,
+        82
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        24,
+        82
+      ]
+    },
+    "props/ability_orb": {
+      "bbox": [
+        1,
+        1,
+        15,
+        15
+      ],
+      "file": "sprites/props/ability_orb.png",
+      "fps": 10.0,
+      "frame_size": [
+        16,
+        16
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        8,
+        8
+      ]
+    },
+    "props/chest": {
+      "bbox": [
+        1,
+        0,
+        28,
+        24
+      ],
+      "file": "sprites/props/chest.png",
+      "fps": 2.0,
+      "frame_size": [
+        28,
+        24
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        14,
+        24
+      ]
+    },
+    "props/door": {
+      "bbox": [
+        0,
+        0,
+        16,
+        48
+      ],
+      "file": "sprites/props/door.png",
+      "fps": 4.0,
+      "frame_size": [
+        16,
+        48
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        8,
+        48
+      ]
+    },
+    "props/enemy_bolt": {
+      "bbox": [
+        0,
+        2,
+        10,
+        8
+      ],
+      "file": "sprites/props/enemy_bolt.png",
+      "fps": 14.0,
+      "frame_size": [
+        10,
+        10
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        5,
+        5
+      ]
+    },
+    "props/hit_spark": {
+      "bbox": [
+        1,
+        1,
+        15,
+        15
+      ],
+      "file": "sprites/props/hit_spark.png",
+      "fps": 16.0,
+      "frame_size": [
+        16,
+        16
+      ],
+      "frames": 3,
+      "loop": false,
+      "pivot": [
+        8,
+        8
+      ]
+    },
+    "props/hologram_ring": {
+      "bbox": [
+        2,
+        1,
+        30,
+        7
+      ],
+      "file": "sprites/props/hologram_ring.png",
+      "fps": 7.0,
+      "frame_size": [
+        32,
+        8
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        16,
+        8
+      ]
+    },
+    "props/koozie_statue": {
+      "bbox": [
+        3,
+        7,
+        29,
+        56
+      ],
+      "file": "sprites/props/koozie_statue.png",
+      "fps": 4.0,
+      "frame_size": [
+        32,
+        56
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        16,
+        56
+      ]
+    },
+    "props/mitt_shot": {
+      "bbox": [
+        0,
+        2,
+        20,
+        10
+      ],
+      "file": "sprites/props/mitt_shot.png",
+      "fps": 16.0,
+      "frame_size": [
+        20,
+        12
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        10,
+        6
+      ]
+    },
+    "props/mitt_shot_charged": {
+      "bbox": [
+        0,
+        0,
+        32,
+        20
+      ],
+      "file": "sprites/props/mitt_shot_charged.png",
+      "fps": 14.0,
+      "frame_size": [
+        32,
+        20
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        16,
+        10
+      ]
+    },
+    "props/nag9000": {
+      "bbox": [
+        2,
+        3,
+        15,
+        13
+      ],
+      "file": "sprites/props/nag9000.png",
+      "fps": 8.0,
+      "frame_size": [
+        16,
+        16
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        8,
+        8
+      ]
+    },
+    "props/pickup_glint": {
+      "bbox": [
+        1,
+        1,
+        8,
+        8
+      ],
+      "file": "sprites/props/pickup_glint.png",
+      "fps": 18.0,
+      "frame_size": [
+        8,
+        8
+      ],
+      "frames": 3,
+      "loop": false,
+      "pivot": [
+        4,
+        4
+      ]
+    },
+    "props/save_pod": {
+      "bbox": [
+        6,
+        0,
+        27,
+        48
+      ],
+      "file": "sprites/props/save_pod.png",
+      "fps": 6.0,
+      "frame_size": [
+        32,
+        48
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        16,
+        48
+      ]
+    },
+    "props/signing_table": {
+      "bbox": [
+        2,
+        3,
+        31,
+        24
+      ],
+      "file": "sprites/props/signing_table.png",
+      "fps": 4.0,
+      "frame_size": [
+        32,
+        24
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        16,
+        24
+      ]
+    },
+    "props/vending_machine": {
+      "bbox": [
+        2,
+        1,
+        31,
+        48
+      ],
+      "file": "sprites/props/vending_machine.png",
+      "fps": 5.0,
+      "frame_size": [
+        32,
+        48
+      ],
+      "frames": 2,
+      "loop": true,
+      "pivot": [
+        16,
+        48
+      ]
+    },
+    "props/warp_pipe": {
+      "bbox": [
+        1,
+        3,
+        32,
+        48
+      ],
+      "file": "sprites/props/warp_pipe.png",
+      "fps": 1.0,
+      "frame_size": [
+        32,
+        48
+      ],
+      "frames": 1,
+      "loop": false,
+      "pivot": [
+        16,
+        48
+      ]
+    },
+    "sleve/backdash": {
+      "bbox": [
+        3,
+        30,
+        44,
+        98
+      ],
+      "file": "sprites/sleve/backdash.png",
+      "fps": 1.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 1,
+      "loop": false,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/hurt": {
+      "bbox": [
+        9,
+        28,
+        49,
+        98
+      ],
+      "file": "sprites/sleve/hurt.png",
+      "fps": 1.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 1,
+      "loop": false,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/idle": {
+      "bbox": [
+        25,
+        31,
+        59,
+        99
+      ],
+      "file": "sprites/sleve/idle.png",
+      "fps": 5.5,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/jump": {
+      "bbox": [
+        21,
+        30,
+        71,
+        96
+      ],
+      "file": "sprites/sleve/jump.png",
+      "fps": 6.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 2,
+      "loop": false,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/run": {
+      "bbox": [
+        16,
+        30,
+        70,
+        98
+      ],
+      "file": "sprites/sleve/run.png",
+      "fps": 11.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 8,
+      "loop": true,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/slide": {
+      "bbox": [
+        31,
+        47,
+        76,
+        100
+      ],
+      "file": "sprites/sleve/slide.png",
+      "fps": 1.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 1,
+      "loop": false,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/spaceball": {
+      "bbox": [
+        2,
+        2,
+        24,
+        24
+      ],
+      "file": "sprites/sleve/spaceball.png",
+      "fps": 14.0,
+      "frame_size": [
+        26,
+        26
+      ],
+      "frames": 4,
+      "loop": true,
+      "pivot": [
+        13,
+        26
+      ]
+    },
+    "sleve/swing": {
+      "bbox": [
+        21,
+        3,
+        82,
+        99
+      ],
+      "file": "sprites/sleve/swing.png",
+      "fps": 12.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 5,
+      "loop": false,
+      "pivot": [
+        38,
+        99
+      ]
+    },
+    "sleve/wall_slide": {
+      "bbox": [
+        40,
+        27,
+        85,
+        100
+      ],
+      "file": "sprites/sleve/wall_slide.png",
+      "fps": 1.0,
+      "frame_size": [
+        96,
+        100
+      ],
+      "frames": 1,
+      "loop": false,
+      "pivot": [
+        38,
+        99
+      ]
+    }
+  },
+  "tiles": {
+    "atlases": {
+      "crash": "tiles/crash.png",
+      "hull": "tiles/hull.png",
+      "outer": "tiles/outer.png"
+    },
+    "columns": 8,
+    "index": {
+      "back_wall": [
+        4,
+        0
+      ],
+      "brick": [
+        2,
+        0
+      ],
+      "brick_conduit": [
+        3,
+        0
+      ],
+      "crate": [
+        5,
+        1
+      ],
+      "floor_fill": [
+        1,
+        0
+      ],
+      "floor_top": [
+        0,
+        0
+      ],
+      "grate": [
+        7,
+        0
+      ],
+      "hazard": [
+        3,
+        1
+      ],
+      "light_panel": [
+        1,
+        1
+      ],
+      "mitt_target_0": [
+        6,
+        1
+      ],
+      "mitt_target_1": [
+        7,
+        1
+      ],
+      "pillar": [
+        4,
+        1
+      ],
+      "pipe_h": [
+        5,
+        0
+      ],
+      "pipe_v": [
+        6,
+        0
+      ],
+      "platform": [
+        0,
+        1
+      ],
+      "spike": [
+        0,
+        2
+      ],
+      "vine": [
+        2,
+        1
+      ]
+    },
+    "tile_size": 16
+  },
+  "ui": {
+    "font": "ui/font/vetro5x7.fnt",
+    "title_bg": "ui/title_bg.png"
+  },
+  "version": 1
+}

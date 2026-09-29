@@ -1,0 +1,32 @@
+{
+  "_comment": "Legendaries and sets shipped with the slice. The slice keeps to powers that need no systems it does not have. Slice items are identified on pickup (Deckard Cane's identification is deferred).",
+  "legendaries": [
+    {"id": "the_bobson", "name": "The Bobson", "family": "bat", "power": "bobson",
+     "text": "Crits launch a spaceball that ricochets to the nearest enemy for 50% damage."},
+    {"id": "leeroys_last_stand", "name": "Leeroy's Last Stand", "family": "chest", "power": "leeroy",
+     "text": "Below 20% HP: +30% damage, and Sleve won't stop yelling."},
+    {"id": "cardboard_box", "name": "Cardboard Box", "family": "chest", "power": "cardboard",
+     "text": "Stand still for 2 s and fodder enemies lose track of you, with a \"?\"."},
+    {"id": "power_glove_of_badness", "name": "Power Glove of Badness", "family": "gloves", "power": "power_glove",
+     "text": "\"It's so bad.\" Charged Mitt Cannon shots fire twice, for +2 EP."},
+    {"id": "mullet_of_theseus", "name": "Mullet of Theseus", "family": "helmet", "power": "mullet",
+     "text": "+1 to every stat per 10 levels. \"If you replace every hair, is it the same mullet?\""}
+  ],
+  "sets": [
+    {"id": "dugnutts_dugout", "name": "Dugnutt's Dugout",
+     "pieces": [
+       {"name": "Dugnutt's Slugger", "family": "bat", "affixes": ["sharp", "ninja", "sniper"]},
+       {"name": "Dugnutt's Mitts", "family": "gloves", "affixes": ["sniper", "bro"]},
+       {"name": "Dugnutt's Cap", "family": "helmet", "affixes": ["hearty", "lucky"]}
+     ],
+     "bonuses": [
+       {"pieces": 2, "stat": "crit_chance", "value": 10, "text": "+10% crit chance"},
+       {"pieces": 3, "stat": "home_runs_crit", "value": 1, "text": "Home Runs always crit"}
+     ]}
+  ],
+  "consumables": {
+    "space_burrito": {"name": "Space Burrito", "icon": "space_burrito", "heal_pct": 30, "price": 30, "text": "Restores 30% HP."},
+    "energy_drink":  {"name": "Energy Drink",  "icon": "energy_drink",  "ep_pct": 50,   "price": 25, "text": "Restores 50% EP."}
+  },
+  "consumable_weights": {"space_burrito": 70, "energy_drink": 30}
+}

@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://dwq7xolg0au1l"
+path="res://.godot/imported/vetro5x7.fnt-482da366c8d10d7d8c9fcc68ea41ae61.fontdata"
+
+[deps]
+
+source_file="res://assets/ui/font/vetro5x7.fnt"
+dest_files=["res://.godot/imported/vetro5x7.fnt-482da366c8d10d7d8c9fcc68ea41ae61.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

@@ -25,6 +25,7 @@ import bosses
 import characters
 import enemies
 import items
+import props
 import scenes
 import screens
 import world
@@ -259,6 +260,13 @@ MOCKUPS = {
     "world_map": screens.world_map,
 }
 
+POSES = {
+    "slide": characters.slide,
+    "backdash": characters.backdash,
+    "hurt": characters.hurt,
+    "wall_slide": characters.wall_slide,
+}
+
 
 def build_mockups(out: Path) -> None:
     folder = out / "mockups"
@@ -274,7 +282,38 @@ def build_reference(out: Path) -> None:
     _png(palettes(), folder / "palettes@4x.png", scale=4)
 
 
-JOBS = [build_characters, build_enemies, build_bosses, build_tiles, build_items, build_mockups, build_reference]
+def build_props(out: Path) -> None:
+    folder = out / "props"
+
+    entries = []
+    for name, build in props.PROPS.items():
+        frames = [sprite.render() for sprite in build()]
+        entries.append((name.replace("_", " "), sheet(frames, len(frames), pad=0)))
+    for name, build in props.EFFECTS.items():
+        frames = [sprite.render() for sprite in build()]
+        entries.append((name.replace("_", " "), sheet(frames, len(frames), pad=0)))
+    for name, build in props.TILES.items():
+        sprite = build()
+        entries.append((name.replace("_", " "), sprite.render(outline=False, contact=False)))
+    _png(_grid(entries, 4, title="PROPS, EFFECTS, AND GATES"), folder / "props_sheet@4x.png")
+
+    strips = []
+    gif_frames = []
+    for state, frames in props.KRATE_ANIMS.items():
+        rendered = [sprite.render() for sprite in frames]
+        strips.append(_strip(rendered, f"KRATE {state.upper()}"))
+        gif_frames.extend(rendered)
+    _png(stack(strips, gap=0, background=BACKDROP), folder / "krate_sheet@3x.png", scale=3)
+    _gif(gif_frames + gif_frames[-2:0:-1], folder / "krate.gif", scale=3, duration=120)
+
+    pose_entries = []
+    for name, build in POSES.items():
+        pose_entries.append((name.replace("_", " "), characters.build(build()[0]).render()))
+    _png(_grid(pose_entries, 2, title="NEW SLEVE POSES"), folder / "sleve_poses@4x.png")
+
+
+JOBS = [build_characters, build_enemies, build_bosses, build_tiles, build_items, build_mockups, build_reference,
+        build_props]
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -2,6 +2,9 @@
 
 [Back to the implementation plan](../implementation-plan.md)
 
+> The first playable slice covers three areas and 13 cells. See
+> [The vertical slice](#the-vertical-slice).
+
 ![World map mockup](../../assets/concept/mockups/world_map@3x.png)
 
 ## The planet
@@ -214,3 +217,56 @@ Ainamortev is open, and these level ranges suggest an order.
   combined 142.7%.
 - The first Minus World cell is behind a truck in the Launch Site. Nothing is
   under the truck. Players will check anyway.
+
+## The vertical slice
+
+The first playable build covers the prologue, the first wing of the hub, and
+the first boss: **11 rooms in 13 cells** across Crash Site Z-0, Hull Cathedral,
+and the Outer Hull, ending at KRATE. It implements the first five rows of the
+[gating table](#ability-gating). Every room is a JSON file, and the
+[level format](../technical/level-format.md) says how to author one.
+
+```text
+     0  1  2  3  4  5  6  7  8  9
+  0  .  .  .  .  G  L  .  .  S  A
+  1  1  2  3  N  V  V  C  D  S  .
+```
+
+`1` Impact Crater, `2` Wreckage Field, `3` Conduit Yard, `N` Narthex, `V` Nave
+(two cells), `G` Gallery, `L` Ledge, `C` Cloister, `D` Deck One, `S` Shaft (two
+cells), `A` Cargo Bay Nine.
+
+| Room | Cell | What's there |
+| --- | --- | --- |
+| Impact Crater | 0,1 | The start. Movement hints, Onson Sweemey, and the vending machine that hands over the **Beam Bat**. A crate bulkhead blocks the east exit until you swing it |
+| Wreckage Field | 1,1 | Kevin Nogilny, the first zombies and bats, and the **Mitt Cannon** orb |
+| Conduit Yard | 2,1 | Darryl Archideld. Optional: a charged shot at the bullseye across the yard opens the conduit closet and its chest |
+| The Narthex | 3,1 | The first **save pod**, Glenallen Mixon, a warp pipe, and the first Hunch-Bot |
+| The Nave | 4–5,1 | The Koozie Statue (**Spaceball**), Anatoli Smorin, and Mike Sernandez. One-way platforms climb like a staircase to the gallery and the ledge |
+| The Gallery | 4,0 | A closet at the end of a 2-tile ball tunnel, holding a chest |
+| The Ledge | 5,0 | A chest floating out of reach until you have the **Jetpack**, so it's a return trip after KRATE |
+| The Cloister | 6,1 | Willie Dustice, the signing table (**Autograph Seal 1**), a hollow wall that hides a secret chest, and a crate bulkhead to the Outer Hull |
+| Deck One | 7,1 | A spike pit, then the **Wall Kick** orb |
+| The Shaft | 8,0–1 | A 4-tile-wide wall-kick climb. The landing has a second warp pipe, a save pod, and four holograms |
+| Cargo Bay Nine | 9,0 | The boss door, and **KRATE**. On his defeat, the Jetpack orb appears and the slice's end card follows |
+
+**Critical path.** Beam Bat, then the crate bulkhead, then the Mitt Cannon.
+Continue through the Narthex and the Nave (the Spaceball is optional) to the
+Cloister and its Seal, break the second bulkhead, take the Wall Kick from Deck
+One, climb the Shaft, and finish at the pod before Cargo Bay Nine.
+
+**Secrets** (each is tested both ways, reachable with its ability and not
+without it):
+
+- **The conduit closet.** It needs a fully charged Mitt Cannon shot.
+- **The Gallery closet.** It needs the Spaceball.
+- **The floating chest.** It needs the Jetpack, and neither the Wall Kick nor
+  the Spaceball is enough.
+- **The hollow wall.** It tonks on the first two bat hits and breaks on the
+  third. Its chest stays hidden until then.
+
+**Left out of the slice**, and still to build: Gargle-oyle Prime and Seal 1's
+place as its reward, the other nine areas and their abilities, the Anvil and
+Deckard shops, the Bestiary tab, the Flip, and the mirror planet. The
+[status table](../technical/architecture.md#vertical-slice-as-built) lists
+everything that differs from the plan.

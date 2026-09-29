@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: "4.7.2"
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  game:
+    name: Compile, unit tests, smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Cache Godot
+        id: godot
+        uses: actions/cache@v6
+        with:
+          path: ~/godot
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64
+
+      - name: Download Godot
+        if: steps.godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot
+          curl -fsSL -o /tmp/godot.zip \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q /tmp/godot.zip -d ~/godot
+          chmod +x ~/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
+
+      - name: Point the tools at Godot
+        run: echo "GODOT=$HOME/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" >> "$GITHUB_ENV"
+
+      # Imports the project, compiles every script, then runs every headless suite.
+      - name: Unit tests
+        run: python tools/godot.py test
+
+      # Boots Main and plays the whole slice through the real UI, from the title screen to the end card.
+      - name: Smoke test
+        run: python tools/godot.py smoke
+
+  data:
+    name: Level lint and generated assets
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/concept_art/requirements.txt
+
+      - name: Install Pillow and NumPy
+        run: python -m pip install -r tools/concept_art/requirements.txt
+
+      - name: Lint the level
+        run: python tools/level_tools.py lint
+
+      # The committed sprites, tiles and UI art must match what the generators produce.
+      - name: Check exported art
+        run: python tools/game_assets/export.py --check
+
+      - name: Check synthesized audio
+        run: python tools/game_assets/audio.py --check
