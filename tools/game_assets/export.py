@@ -509,6 +509,14 @@ def _generated_files(root: Path) -> list[str]:
     return sorted(files)
 
 
+def _same_file(expected: Path, actual: Path) -> bool:
+    """PNGs are compared by decoded pixels, so a different zlib build does not fail the check."""
+    if expected.suffix == ".png":
+        with Image.open(expected) as left, Image.open(actual) as right:
+            return left.mode == right.mode and left.size == right.size and left.tobytes() == right.tobytes()
+    return filecmp.cmp(expected, actual, shallow=False)
+
+
 def _compare_trees(expected: Path, actual: Path) -> list[str]:
     messages: list[str] = []
     left = set(_generated_files(expected))
@@ -518,7 +526,7 @@ def _compare_trees(expected: Path, actual: Path) -> list[str]:
     for rel in sorted(right - left):
         messages.append(f"extra: {rel}")
     for rel in sorted(left & right):
-        if not filecmp.cmp(expected / rel, actual / rel, shallow=False):
+        if not _same_file(expected / rel, actual / rel):
             messages.append(f"different: {rel}")
     return messages
 

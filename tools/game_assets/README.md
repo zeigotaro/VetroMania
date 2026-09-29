@@ -15,9 +15,9 @@ python tools/game_assets/export.py --check
 The exporter imports `tools/concept_art` by adding that folder to `sys.path`, regenerates every asset into a temporary directory, and then either:
 
 - copies the generated files into `--out`, or
-- compares the temporary output against `--out` and exits with code 1 on any difference (`--check`).
+- compares the temporary output against `--out` and exits with code 1 on any difference (`--check`). PNGs are compared by their decoded pixels, so a different zlib build (Windows and Linux Pillow wheels differ) doesn't fail the check. Everything else is compared byte for byte.
 
-Outputs are deterministic with the pinned Pillow and NumPy versions from `tools/concept_art/requirements.txt`.
+Outputs are deterministic with the pinned Pillow and NumPy versions from `tools/concept_art/requirements.txt`, and CI runs `--check` on Linux.
 
 ## Output
 

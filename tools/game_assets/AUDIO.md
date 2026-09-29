@@ -6,21 +6,20 @@ All audio under `game/assets/audio/` is original procedural synthesis generated 
 
 From the repository root:
 
-```powershell
-$env:PYTHONDONTWRITEBYTECODE = "1"
-& C:\Users\glharper\AppData\Local\Temp\vm-art\Scripts\python.exe tools\game_assets\audio.py
+```sh
+python tools/game_assets/audio.py
 ```
 
 Custom output path:
 
-```powershell
-& C:\Users\glharper\AppData\Local\Temp\vm-art\Scripts\python.exe tools\game_assets\audio.py --out game\assets\audio
+```sh
+python tools/game_assets/audio.py --out game/assets/audio
 ```
 
-Determinism check against the committed tree:
+Determinism check against the committed tree (CI runs this on Linux):
 
-```powershell
-& C:\Users\glharper\AppData\Local\Temp\vm-art\Scripts\python.exe tools\game_assets\audio.py --check
+```sh
+python tools/game_assets/audio.py --check
 ```
 
 ## Manifest schema
